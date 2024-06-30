@@ -149,6 +149,19 @@
 				xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Category"
+			visibility="public" xmi:id="po2yFgmGAqAAdgqH" xmi:type="uml:Class">
+			<appliedStereotype xmi:value="Class_Value Object_id" />
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="Vo2yFgmGAqAAdgqI" xmi:type="uml:Property">
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="subcategory"
+				type="string_id" visibility="private" xmi:id="to2yFgmGAqAAdgqJ"
+				xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
 		<ownedMember isAbstract="false" name="research" isDerived="false" isLeaf="false"
 			xmi:id="GqifxgmGAqAAdQ2W"
 			xmi:type="uml:Association">
@@ -280,6 +293,26 @@
 				isStatic="false" name="" type="dLiUJgmGAqAAdRNp" xmi:id="VoqUJgmGAqAAdRN8"
 				xmi:type="uml:Property">
 				<lowerValue value="2" xmi:id="VoqUJgmGAqAAdRN8_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="catalogs"
+			xmi:id="DFOyFgmGAqAAdgqQ" xmi:type="uml:Association">
+			<memberEnd xmi:idref="DFOyFgmGAqAAdgqR" />
+			<ownedEnd aggregation="composite" association="DFOyFgmGAqAAdgqQ" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="po2yFgmGAqAAdgqH" xmi:id="DFOyFgmGAqAAdgqR"
+				xmi:type="uml:Property">
+				<lowerValue value="2" xmi:id="DFOyFgmGAqAAdgqR_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="DFOyFgmGAqAAdgqT" />
+			<ownedEnd aggregation="none" association="DFOyFgmGAqAAdgqQ" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="u0BYJgmGAqAAdRE6" xmi:id="DFOyFgmGAqAAdgqT"
+				xmi:type="uml:Property">
+
+				<lowerValue value="1" xmi:id="DFOyFgmGAqAAdgqT_multiplicity_lowerValue"
 					xmi:type="uml:LiteralString" />
 			</ownedEnd>
 		</ownedMember>

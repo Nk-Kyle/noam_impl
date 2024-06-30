@@ -42,6 +42,12 @@
                     <attribute>contact</attribute>
                 </class>
             </relation>
+            <relation name="catalogs">
+                <class name="Category">
+                    <attribute>name</attribute>
+                    <attribute>subcategory</attribute>
+                </class>
+            </relation>
         </class>
     </query>
     <query name="Q3"> <!-- Search member loan detail -->
@@ -102,6 +108,12 @@
                         <class name="Publisher">
                             <attribute>name</attribute>
                             <attribute>contact</attribute>
+                        </class>
+                    </relation>
+                    <relation name="catalogs">
+                        <class name="Category">
+                            <attribute>name</attribute>
+                            <attribute>subcategory</attribute>
                         </class>
                     </relation>
                 </class>

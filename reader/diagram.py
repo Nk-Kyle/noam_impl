@@ -157,8 +157,8 @@ class ClassDiagramReader:
             association_tag.attrib[f"{{{self.xs}}}id"],
             from_class,
             to_class,
-            from_end.find("lowerValue").attrib["value"],
-            to_end.find("lowerValue").attrib["value"],
+            float(from_end.find("lowerValue").attrib["value"]),
+            float(to_end.find("lowerValue").attrib["value"]),
             RelType.COMPOSITION if composite_end is not None else RelType.ASSOCIATION,
             (
                 association_tag.attrib["name"]

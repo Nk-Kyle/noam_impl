@@ -2,6 +2,7 @@ from model.klass import Class
 from model.query import Query
 from model.relationship import Relationship
 from .component import AggNode, RelAggNodeTuple
+from typing import List
 
 
 class AggTree:
@@ -13,6 +14,12 @@ class AggTree:
 
         AggTree.AGGTREE_INDEX += 1
         self.root = AggNode(root_class, main_root=self, is_root=True)
+
+    def traverse(self, node: AggNode) -> List[AggNode]:
+        nodes = [node]
+        for child in node.children:
+            nodes.extend(self.traverse(child.node))
+        return nodes
 
     def print_tree(self):
         print(f"AggTree {self.label}")

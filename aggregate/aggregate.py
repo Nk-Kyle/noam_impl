@@ -66,7 +66,6 @@ class Aggregator:
             agg_tree = Transformer.create_aggtree_from_query(query)
             self.prune_redirect_path(agg_tree)
             self.agg_trees.append(agg_tree)
-        Utils.print_aggregate(self.agg_map)
 
     def prune_redirect_path(self, agg_tree: AggTree):
         """
@@ -97,4 +96,3 @@ class Aggregator:
                 __prune_redirect(child.node)
 
         __prune_redirect(agg_tree.root)
-        agg_tree.print_tree()

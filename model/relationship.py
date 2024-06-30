@@ -29,5 +29,13 @@ class Relationship:
         elif self.type == RelType.GENERALIZATION:
             self.name = f"G{from_class.name}:{to_class.name}"
 
+    def count(self, klass: Class):
+        if klass == self.from_class:
+            return self.from_arrity
+        elif klass == self.to_class:
+            return self.to_arrity
+        else:
+            raise ValueError(f"Class {klass.name} is not part of the relationship")
+
     def __str__(self):
         return f"[Relationship] {self.from_class.name} -> {self.to_class.name} ({self.from_arrity}, {self.to_arrity}) {self.type.name} ({self.name})"

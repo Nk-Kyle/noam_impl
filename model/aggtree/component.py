@@ -14,6 +14,12 @@ class AggNode:
         self.children: List[RelAggNodeTuple] = []
         self.is_root = is_root
 
+    def get_tuple_of_node(self, node: "AggNode") -> "RelAggNodeTuple":
+        for child in self.children:
+            if child.node == node:
+                return child
+        return None
+
     def __str__(self):
         return f"[AggNode] {self.klass.name}"
 
@@ -32,6 +38,9 @@ class RelAggNodeTuple:
     def __init__(self, rel: Relationship, node: AggNode):
         self.rel = rel
         self.node = node
+        self.normalized = False
+        self.prev_arrity = rel.count(node.parent.klass)
+        self.next_arrity = rel.count(node.klass)
 
     def __str__(self):
         return f"[AggNodeTuple] {self.rel.name} -> {self.node.klass.name}"

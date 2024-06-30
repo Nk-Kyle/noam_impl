@@ -59,5 +59,8 @@ class QueryReader:
             child_class = self.class_diagram.get_class_by_name(child.attrib["name"])
             child_class_attributes = [attr.text for attr in child.findall("attribute")]
             query_node = QueryNode(child_class, parent, child_class_attributes)
-            parent.add_child(RelNodeTuple(rel.attrib["name"], query_node))
+            relationship = self.class_diagram.get_relationship_by_name(
+                rel.attrib["name"]
+            )
+            parent.add_child(RelNodeTuple(relationship, query_node))
             self.read_recursive(child, query_node)

@@ -17,11 +17,15 @@ class ClassDiagram:
     def get_class(self, class_id):
         return self.classes.get(class_id)
 
+    def get_class_by_name(self, class_name):
+        return self.classes_names.get(class_name)
+
     def add_relationship(self, relationship: Relationship):
         self.relationships[relationship.id] = relationship
-        self.relationships_names[
-            relationship.from_class.name + relationship.to_class.name
-        ] = relationship
+        self.relationships_names[relationship.name] = relationship
 
     def get_relationship(self, relationship_id):
         return self.relationships.get(relationship_id)
+
+    def get_relationship_by_name(self, relationship_name):
+        return self.relationships_names.get(relationship_name)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <queryDoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../xsd/query.xsd">
-    <query name="Q1">
+    <query name="Q1"> <!-- Search book loan detail -->
         <class name="Book">
             <attribute searchKey="true">id</attribute>
             <relation name="records">
@@ -13,12 +13,95 @@
                             <attribute>name</attribute>
                             <attribute>studentId</attribute>
                             <attribute>year</attribute>
+                            <attribute>employeeId</attribute>
                         </class>
                     </relation>
                     <relation name="commits">
                         <class name="Return">
                             <attribute>penalty</attribute>
                             <attribute>returnedAt</attribute>
+                        </class>
+                    </relation>
+                </class>
+            </relation>
+        </class>
+    </query>
+    <query name="Q2"> <!-- Search book detail -->
+        <class name="Book">
+            <attribute searchKey="true">id</attribute>
+            <attribute>name</attribute>
+            <attribute>description</attribute>
+            <relation name="writes">
+                <class name="Author">
+                    <attribute>name</attribute>
+                </class>
+            </relation>
+            <relation name="supplies">
+                <class name="Publisher">
+                    <attribute>name</attribute>
+                    <attribute>contact</attribute>
+                </class>
+            </relation>
+        </class>
+    </query>
+    <query name="Q3"> <!-- Search member loan detail -->
+        <class name="Member">
+            <attribute searchKey="true">id</attribute>
+            <attribute>name</attribute>
+            <relation name="loaned">
+                <class name="Loan">
+                    <attribute>loanedAt</attribute>
+                    <relation name="records">
+                        <class name="Book">
+                            <attribute>name</attribute>
+                            <attribute>description</attribute>
+                        </class>
+                    </relation>
+                    <relation name="commits">
+                        <class name="Return">
+                            <attribute>penalty</attribute>
+                            <attribute>returnedAt</attribute>
+                        </class>
+                    </relation>
+                </class>
+            </relation>
+        </class>
+    </query>
+    <query name="Q4"> <!-- Search member Info -->
+        <class name="Member">
+            <attribute searchKey="true">id</attribute>
+            <attribute>type</attribute>
+            <attribute>name</attribute>
+            <attribute>studentId</attribute>
+            <attribute>year</attribute>
+            <attribute>employeeId</attribute>
+            <relation name="research">
+                <class name="Faculty">
+                    <attribute>id</attribute>
+                    <attribute>name</attribute>
+                </class>
+            </relation>
+            <relation name="place">
+                <class name="Address">
+                    <attribute>city</attribute>
+                    <attribute>address</attribute>
+                    <attribute>postal</attribute>
+                </class>
+            </relation>
+        </class>
+    </query>
+    <query name="Q5"> <!-- Search author books -->
+        <class name="Author">
+            <attribute searchKey="true">id</attribute>
+            <attribute>name</attribute>
+            <relation name="writes">
+                <class name="Book">
+                    <attribute>name</attribute>
+                    <attribute>description</attribute>
+                    <relation name="supplies">
+                        <class name="Publisher">
+                            <attribute>name</attribute>
+                            <attribute>contact</attribute>
                         </class>
                     </relation>
                 </class>

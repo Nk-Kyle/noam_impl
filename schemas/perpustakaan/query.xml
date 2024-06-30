@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryDoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../xsd/query.xsd">
+    <query name="Q1">
+        <class name="Book">
+            <attribute searchKey="true">id</attribute>
+            <relation name="records">
+                <class name="Loan">
+                    <attribute>loanedAt</attribute>
+                    <relation name="loaned">
+                        <class name="Member">
+                            <attribute>type</attribute>
+                            <attribute>name</attribute>
+                            <attribute>studentId</attribute>
+                            <attribute>year</attribute>
+                        </class>
+                    </relation>
+                    <relation name="commits">
+                        <class name="Return">
+                            <attribute>penalty</attribute>
+                            <attribute>returnedAt</attribute>
+                        </class>
+                    </relation>
+                </class>
+            </relation>
+        </class>
+    </query>
+</queryDoc>

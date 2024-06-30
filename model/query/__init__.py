@@ -27,4 +27,11 @@ class Query:
         return None
 
     def print_tree(self):
+        print(f"Query {self.name}")
+        for _ in range(20):
+            print("-", end="")
+        print()
         self.root.print_tree()
+        for _ in range(20):
+            print("-", end="")
+        print()

@@ -1,0 +1,17 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="frequencyDoc" type="frequencyDocType" />
+    <xs:complexType name="frequencyType">
+        <xs:simpleContent>
+            <xs:extension base="xs:float">
+                <xs:attribute type="xs:string" name="type" use="optional" />
+                <xs:attribute type="xs:string" name="name" use="optional" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="frequencyDocType">
+        <xs:sequence>
+            <xs:element type="frequencyType" name="frequency" maxOccurs="unbounded" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

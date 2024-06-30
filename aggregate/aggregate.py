@@ -17,6 +17,7 @@ class Aggregator:
         self.queries = queries
         self.frequency_table = frequency_table
         self.agg_map: Dict[Class, Set[Class]] = defaultdict(set)
+        self.pruned_map: Dict[Class, Set[str]] = defaultdict(set)
 
     def aggregate_relationship(self):
         """
@@ -39,11 +40,22 @@ class Aggregator:
                 self.agg_map[root_class].update(agg_set)
                 temp_classes.remove(relation.from_class)
 
+        for relation in self.class_diagram.relationships.values():
+            if relation.type == RelType.GENERALIZATION:
+                self.populate_parent(relation.from_class, relation.to_class)
+
         for klass in temp_classes:
             if klass not in self.agg_map:
                 self.agg_map[klass] = {klass}
             else:
                 self.agg_map[klass].add(klass)
+
+    def populate_parent(self, child: Class, parent: Class):
+        """
+        Populate the parent class by adding the child class attributes and a type attribute
+        """
+        parent.add_attribute(child.attributes)
+        parent.add_attribute("type")
 
     def get_class_aggregate(self, klass: Class) -> Tuple[Class, Set[Class]]:
         """

@@ -6,6 +6,7 @@ from utils.choices import Stereotype, RelType
 from .diagram import ClassDiagramReader
 from .query import QueryReader
 from .frequency import FrequencyReader
+from typing import Tuple
 
 
 # File is located in the same directory in folder schemas
@@ -18,7 +19,9 @@ class Reader:
         self.folder = folder
         self.xs = xs
 
-    def read(self) -> ClassDiagram:
+    def read(self) -> Tuple[ClassDiagram, QueryReader, FrequencyReader]:
         class_diagram = ClassDiagramReader(self.folder, self.xs).read()
         queries = QueryReader(self.folder, class_diagram).read()
         frequency_table = FrequencyReader(self.folder).read()
+
+        return class_diagram, queries, frequency_table

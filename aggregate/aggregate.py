@@ -1,9 +1,12 @@
-from model.diagram import ClassDiagram, Class, Relationship
-from model.query import Query, QueryNode, RelNodeTuple
+from model.diagram import ClassDiagram, Class
+from model.query import Query
 from model.frequency import FrequencyTable
-from typing import List, Dict, Set, Tuple
-from utils.choices import RelType
+from typing import List, Dict, Set
+from utils.choices import RelType, Stereotype
 from collections import defaultdict
+from model.aggtree import AggTree, AggNode
+from aggregate.utils import Utils
+from aggregate.transform import Transformer
 
 
 class Aggregator:
@@ -18,6 +21,7 @@ class Aggregator:
         self.frequency_table = frequency_table
         self.agg_map: Dict[Class, Set[Class]] = defaultdict(set)
         self.pruned_map: Dict[Class, Set[str]] = defaultdict(set)
+        self.agg_trees: List[AggTree] = []
 
     def aggregate_relationship(self):
         """
@@ -35,14 +39,18 @@ class Aggregator:
                 relation.type == RelType.COMPOSITION
                 or relation.type == RelType.GENERALIZATION
             ):
-                root_class = self.get_class_aggregate(relation.to_class)[0]
-                agg_set = self.get_class_aggregate(relation.from_class)[1]
+                root_class, _ = Utils.get_class_aggregate(
+                    self.agg_map, relation.to_class
+                )
+                _, agg_set = Utils.get_class_aggregate(
+                    self.agg_map, relation.from_class
+                )
                 self.agg_map[root_class].update(agg_set)
                 temp_classes.remove(relation.from_class)
 
         for relation in self.class_diagram.relationships.values():
             if relation.type == RelType.GENERALIZATION:
-                self.populate_parent(relation.from_class, relation.to_class)
+                Utils.populate_parent(relation.from_class, relation.to_class)
 
         for klass in temp_classes:
             if klass not in self.agg_map:
@@ -50,36 +58,43 @@ class Aggregator:
             else:
                 self.agg_map[klass].add(klass)
 
-    def populate_parent(self, child: Class, parent: Class):
+    def create_aggregate_trees(self):
         """
-        Populate the parent class by adding the child class attributes and a type attribute
+        Create the aggregate trees from the class diagram
         """
-        parent.add_attribute(child.attributes)
-        parent.add_attribute("type")
+        for query in self.queries:
+            agg_tree = Transformer.create_aggtree_from_query(query)
+            self.prune_redirect_path(agg_tree)
+            self.agg_trees.append(agg_tree)
+        Utils.print_aggregate(self.agg_map)
 
-    def get_class_aggregate(self, klass: Class) -> Tuple[Class, Set[Class]]:
+    def prune_redirect_path(self, agg_tree: AggTree):
         """
-        Get the aggregate relationship of a class
-
-        Parameters
-        ----------
-        class_ : Class
-            The class to get the aggregate relationship
-
-        Returns
-        -------
-        Tuple[Class, Set[Class]]
-            The root class and the set of classes that are aggregated
+        Change the class of AggNode class to the root class
+        based on self.agg_map
         """
 
-        for root, children in self.agg_map.items():
-            if klass in children:
-                return root, children
-        return klass, {klass}
+        # replace the class with the root class
+        def __pr_node(node: AggNode):
+            root, _ = Utils.get_class_aggregate(self.agg_map, node.klass)
+            if node.klass.stereotype == Stereotype.VALUE_OBJECT:
+                self.pruned_map[node.klass].add(root.name)
 
-    def print_aggregate(self):
-        for root, children in self.agg_map.items():
-            print(f"Root: {root.name}")
-            for child in children:
-                print(f"Member: {child.name}")
-            print("")
+            # replace the class with the root class
+            node.klass = root
+
+            for child in node.children:
+                __pr_node(child.node)
+
+        __pr_node(agg_tree.root)
+
+        # remove consecutive classes (parent and child) with the same name
+        def __prune_redirect(node: AggNode):
+            for child in node.children[:]:
+                if node.klass == child.node.klass:
+                    node.children.remove(child)
+                    continue
+                __prune_redirect(child.node)
+
+        __prune_redirect(agg_tree.root)
+        agg_tree.print_tree()

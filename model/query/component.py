@@ -19,7 +19,11 @@ class QueryNode:
         self.children.append(tuple)
 
     def print_tree(self, level=0):
-        print("\t" * level + str(self))
+        print("\t" * level + str(self), end=" ")
+        if self.attributes:
+            print(f"({', '.join(self.attributes)})")
+        else:
+            print()
         for child in self.children:
             child.node.print_tree(level + 1)
 

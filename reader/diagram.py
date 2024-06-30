@@ -69,9 +69,6 @@ class ClassDiagramReader:
                 rel = self._read_generalization(member, class_diagram)
                 class_diagram.add_relationship(rel)
 
-        for rel in class_diagram.relationships.values():
-            print(rel)
-
         return class_diagram
 
     def _read_class(self, class_tag) -> Class:

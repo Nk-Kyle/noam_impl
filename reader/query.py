@@ -39,8 +39,6 @@ class QueryReader:
 
             queries.append(query)
 
-            query.print_tree()
-
         return queries
 
     def read_recursive(self, class_tree, parent: QueryNode = None):

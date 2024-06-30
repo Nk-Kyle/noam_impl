@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryDoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../xsd/query.xsd">
+    <query name="Q1">
+        <class name="Order">
+            <attribute searchKey="true">id</attribute>
+            <relation name="consists_of">
+                <class name="Item">
+                    <relation name="references">
+                        <class name="Product">
+                        </class>
+                    </relation>
+                </class>
+            </relation>
+            <relation name="requests">
+                <class name="Customer">
+                </class>
+            </relation>
+        </class>
+    </query>
+</queryDoc>

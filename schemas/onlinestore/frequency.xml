@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frequencyDoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../xsd/frequency.xsd">
+    <frequency type="class" name="Order">1</frequency>
+    <frequency type="class" name="Carrier">1</frequency>
+    <frequency type="class" name="Payment">1</frequency>
+    <frequency type="class" name="Item">1</frequency>
+    <frequency type="class" name="Customer">1</frequency>
+    <frequency type="class" name="Product">1</frequency>
+    <frequency type="class" name="Supplier">1</frequency>
+    <frequency type="class" name="Category">1</frequency>
+    <frequency type="query" name="Q1">15</frequency>
+</frequencyDoc>

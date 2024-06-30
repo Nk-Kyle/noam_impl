@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0"
+	xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<uml:Model name="onlinestore" xmi:id="Y.d3xgmGAqAAdQkb">
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Order"
+			visibility="public" xmi:id="Order" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+        <ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Carrier"
+			visibility="public" xmi:id="Carrier" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+        <ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Payment"
+			visibility="public" xmi:id="Payment" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+        <ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Item"
+			visibility="public" xmi:id="Item" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+        <ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Customer"
+			visibility="public" xmi:id="Customer" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+        <ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Product"
+			visibility="public" xmi:id="Product" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+        <ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Supplier"
+			visibility="public" xmi:id="Supplier" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+        <ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Category"
+			visibility="public" xmi:id="Category" xmi:type="uml:Class">
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
+				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				<appliedStereotype xmi:value="PK" />
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
+				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+			</ownedAttribute>
+		</ownedMember>
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="requests"
+			xmi:id="r1" xmi:type="uml:Association">
+			<memberEnd xmi:idref="r11" />
+			<ownedEnd aggregation="none" association="r1" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Order" xmi:id="r11"
+				xmi:type="uml:Property">
+				<lowerValue value="34" xmi:id="xqHoJgmGAqAAdRB2_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="r12" />
+			<ownedEnd aggregation="none" association="r1" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Customer" xmi:id="r12"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB4_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+        <ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="consists_of"
+			xmi:id="r2" xmi:type="uml:Association">
+			<memberEnd xmi:idref="r21" />
+			<ownedEnd aggregation="none" association="r2" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Item" xmi:id="r21"
+				xmi:type="uml:Property">
+				<lowerValue value="6" xmi:id="xqHoJgmGAqAAdRB2_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="r22" />
+			<ownedEnd aggregation="none" association="r2" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Order" xmi:id="r22"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB4_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+        <ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="delivers"
+			xmi:id="r3" xmi:type="uml:Association">
+			<memberEnd xmi:idref="r31" />
+			<ownedEnd aggregation="none" association="r3" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Carrier" xmi:id="r31"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB2_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="r32" />
+			<ownedEnd aggregation="none" association="r3" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Order" xmi:id="r32"
+				xmi:type="uml:Property">
+				<lowerValue value="69622" xmi:id="xqHoJgmGAqAAdRB4_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+        <ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="commits"
+			xmi:id="r4" xmi:type="uml:Association">
+			<memberEnd xmi:idref="r41" />
+			<ownedEnd aggregation="none" association="r4" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Payment" xmi:id="r41"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB2_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="r42" />
+			<ownedEnd aggregation="none" association="r4" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Order" xmi:id="r42"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB4_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+        <ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="references"
+			xmi:id="r5" xmi:type="uml:Association">
+			<memberEnd xmi:idref="r51" />
+			<ownedEnd aggregation="none" association="r5" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Product" xmi:id="r51"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB2_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="r52" />
+			<ownedEnd aggregation="none" association="r5" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Item" xmi:id="r52"
+				xmi:type="uml:Property">
+				<lowerValue value="1988" xmi:id="xqHoJgmGAqAAdRB4_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+        <ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="furnishes"
+			xmi:id="r6" xmi:type="uml:Association">
+			<memberEnd xmi:idref="r61" />
+			<ownedEnd aggregation="none" association="r6" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Supplier" xmi:id="r61"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB2_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="r62" />
+			<ownedEnd aggregation="none" association="r6" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Product" xmi:id="r62"
+				xmi:type="uml:Property">
+				<lowerValue value="5" xmi:id="xqHoJgmGAqAAdRB4_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+        <ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="catalogues"
+			xmi:id="r7" xmi:type="uml:Association">
+			<memberEnd xmi:idref="r71" />
+			<ownedEnd aggregation="none" association="r7" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Category" xmi:id="r71"
+				xmi:type="uml:Property">
+				<lowerValue value="1" xmi:id="xqHoJgmGAqAAdRB2_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+			<memberEnd xmi:idref="r72" />
+			<ownedEnd aggregation="none" association="r7" isDerived="false"
+				isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false"
+				isStatic="false" type="Product" xmi:id="r72"
+				xmi:type="uml:Property">
+				<lowerValue value="14" xmi:id="xqHoJgmGAqAAdRB4_multiplicity_lowerValue"
+					xmi:type="uml:LiteralString" />
+			</ownedEnd>
+		</ownedMember>
+
+
+		
+	</uml:Model>
+</xmi:XMI>

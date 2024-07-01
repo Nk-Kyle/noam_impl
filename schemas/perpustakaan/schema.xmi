@@ -151,7 +151,7 @@
 		</ownedMember>
 		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Category"
 			visibility="public" xmi:id="po2yFgmGAqAAdgqH" xmi:type="uml:Class">
-			<appliedStereotype xmi:value="Class_Value Object_id" />
+			<appliedStereotype xmi:value="Value Object" />
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
 				visibility="private" xmi:id="Vo2yFgmGAqAAdgqI" xmi:type="uml:Property">

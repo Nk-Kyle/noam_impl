@@ -67,7 +67,7 @@ class Optimizer:
             self.partition_agg_tree(max_node)
             self.partition_agg_tree(agg_node)
 
-    def denormalize(self):
+    def denormalize(self) -> List[AggTree]:
         """
         Create new Aggregate Tree from the normalized node
         """
@@ -108,7 +108,7 @@ class Optimizer:
         # for agg_tree in self.result.values():
         #     agg_tree.print_tree()
 
-        return self.result
+        return list(self.result.values())
 
     def merge_tree(self, tree1: AggTree, tree2: AggTree):
         """

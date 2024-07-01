@@ -1,12 +1,14 @@
 from model.diagram import ClassDiagram, Class
 from model.query import Query
 from model.frequency import FrequencyTable
-from typing import List, Dict, Set
+from typing import List, Dict, Set, Tuple
 from utils.choices import RelType, Stereotype
 from collections import defaultdict
-from model.aggtree import AggTree, AggNode
+from model.aggtree import AggTree, AggNode, RelAggNodeTuple
+from model.relationship import Relationship
 from aggregate.utils import Utils
 from aggregate.transform import Transformer
+from aggregate.optimizer import Optimizer
 
 
 class Aggregator:
@@ -20,8 +22,20 @@ class Aggregator:
         self.queries = queries
         self.frequency_table = frequency_table
         self.agg_map: Dict[Class, Set[Class]] = defaultdict(set)
-        self.pruned_map: Dict[Class, Set[str]] = defaultdict(set)
+        self.pruned_map: Dict[Class, Dict[str, Set[Relationship]]] = defaultdict(
+            lambda: defaultdict(set)
+        )  # Class -> {query -> Relationship}
         self.agg_trees: List[AggTree] = []
+
+    def create_optimized_trees(self):
+        """
+        Create the optimized aggregate trees
+        """
+        self.aggregate_relationship()
+        self.create_aggregate_trees()
+
+        self.agg_trees = Optimizer(self.frequency_table, self.agg_trees).optimize()
+        self.connect_value_objects()
 
     def aggregate_relationship(self):
         """
@@ -77,7 +91,8 @@ class Aggregator:
         def __pr_node(node: AggNode):
             root, _ = Utils.get_class_aggregate(self.agg_map, node.klass)
             if node.klass.stereotype == Stereotype.VALUE_OBJECT:
-                self.pruned_map[node.klass].add(root.name)
+                relationship = node.parent.get_tuple_of_node(node).rel
+                self.pruned_map[root][agg_tree.label].add(relationship)
 
             # replace the class with the root class
             node.klass = root
@@ -96,3 +111,37 @@ class Aggregator:
                 __prune_redirect(child.node)
 
         __prune_redirect(agg_tree.root)
+
+    def connect_value_objects(self):
+        """
+        Connect the value objects to the root class
+        """
+        for agg_tree in self.agg_trees:
+            for node in agg_tree.traverse(agg_tree.root):
+                self.add_pruned_VOs(node)
+
+            agg_tree.print_tree()
+
+    def add_pruned_VOs(self, node: AggNode) -> Set[RelAggNodeTuple]:
+        """
+        Get the pruned value objects of a class
+        """
+
+        pruneds: Set[Relationship] = set()
+
+        for q_label in node.main_root.applied_queries:
+            pruneds.update(self.pruned_map[node.klass][q_label])
+
+        # Remove duplicate nodes
+        # node1 = node2 if node1.klass == node2.klass
+        klasses = set()
+        for pruned in pruneds.copy():
+            if pruned.from_class in klasses:
+                pruneds.remove(pruned)
+            else:
+                klasses.add(pruned.from_class)
+
+        # Create new RelAggNodeTuple with the same node
+        for pruned in pruneds:
+            new_node = AggNode(pruned.from_class, node.main_root, node)
+            node.add_child(RelAggNodeTuple(pruned, new_node))

@@ -27,7 +27,7 @@ class Aggregator:
         )  # Class -> {query -> Relationship}
         self.agg_trees: List[AggTree] = []
 
-    def create_optimized_trees(self):
+    def create_optimized_trees(self) -> List[AggTree]:
         """
         Create the optimized aggregate trees
         """
@@ -37,6 +37,8 @@ class Aggregator:
         self.agg_trees = Optimizer(self.frequency_table, self.agg_trees).optimize()
         self.connect_value_objects()
         self.get_related_attributes()
+
+        return self.agg_trees
 
     def aggregate_relationship(self):
         """

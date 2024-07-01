@@ -1,6 +1,8 @@
 from model.noam.collection import NoAMCollection
 from model.aggtree import AggTree, AggNode, RelAggNodeTuple
 from model.diagram import ClassDiagram
+from typing import Dict, List
+from pprint import pprint
 
 
 class Converter:
@@ -14,21 +16,41 @@ class Converter:
         """
         collection = NoAMCollection(agg_tree.root.klass.name)
 
-        # add the root class attributes to the schema
-        root_class = agg_tree.root.klass
-        for attr, type in root_class.attributes.items():
-            collection.schema[attr] = type
-
-        # For each child, add the attributes to the schema recursively as dictionary keys
-        for child in agg_tree.root.children:
-            child_attributes = self._get_attributes(child)
+        return_dict = self.__aggregate_recursive(agg_tree.root)
+        for key, value in return_dict.items():
+            collection.add_entry(key, value)
 
         collection.print_schema()
 
         return collection
 
-    def _get_attributes(self, t: RelAggNodeTuple) -> dict:
+    def __aggregate_recursive(
+        self, node: AggNode
+    ) -> Dict[str, str | List[Dict[str, str]]]:
         """
-        Get the attributes of a node child
+        Recursively add the attributes to the collection
         """
-        attributes = {}
+        return_dict = {}
+        for attr in node.related_attributes:
+            return_dict[attr] = node.klass.attributes[attr]
+
+        for child in node.children:
+            child_dict = self.__aggregate_recursive(child.node)
+            if child.rel.count(child.node.klass) > 1:
+                return_dict[child.node.klass.name] = [child_dict]
+            else:  # Flatten the list
+                for key, value in child_dict.items():
+                    return_dict[child.node.klass.name + "_" + key] = value
+
+        for norm_child in node.normalized_children:
+            pk = norm_child.node.klass.pk
+            if norm_child.rel.count(norm_child.node.klass) > 1:
+                return_dict[norm_child.node.klass.name] = [
+                    {pk: norm_child.node.klass.attributes[pk]}
+                ]
+            else:
+                return_dict[norm_child.node.klass.name] = {
+                    pk: norm_child.node.klass.attributes[pk]
+                }
+
+        return return_dict

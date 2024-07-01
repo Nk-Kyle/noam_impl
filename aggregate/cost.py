@@ -41,23 +41,19 @@ class CostUtil:
         positive value means the cost is decreased
         """
 
-        # Total Cw (This and descendants)
+        # Total Cw (This node and descendants)
         total_cw = node.update_cost * freq_table.get_frequency(node.klass.name)
         for child in node.children:
             total_cw += child.rel_update_cost * freq_table.get_frequency(child.rel.name)
             total_cw += CostUtil.total_cw(freq_table, child.node)
 
-        print(f"Total Cw: {total_cw}")
-        print(f"Update Cost: {node.update_cost}")
         # Delta Cw
         delta_cw = total_cw - (total_cw / node.update_cost)
 
         # Delta Cr = cr
-        delta_cr = (1 - CostUtil.count_from_agg_tree(node)) * freq_table.get_frequency(
-            node.klass.name
-        )
-        print(f"Delta Cw: {delta_cw}")
-        print(f"Delta Cr: {delta_cr}")
+        delta_cr = (
+            node.read_cost - CostUtil.count_from_agg_tree(node)
+        ) * freq_table.get_frequency(node.main_root.label)
 
         return delta_cw + delta_cr
 
@@ -69,5 +65,6 @@ class CostUtil:
         total_cw = node.update_cost * freq_table.get_frequency(node.klass.name)
         for child in node.children:
             total_cw += child.rel_update_cost * freq_table.get_frequency(child.rel.name)
-            total_cw += CostUtil.total_cw(freq_table, child.node)
+            if not child.normalized:
+                total_cw += CostUtil.total_cw(freq_table, child.node)
         return total_cw

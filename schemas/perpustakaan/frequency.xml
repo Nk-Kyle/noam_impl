@@ -3,18 +3,18 @@
     xsi:noNamespaceSchemaLocation="../xsd/frequency.xsd">
     <frequency type="class" name="Member">10</frequency>
     <frequency type="class" name="Loan">10</frequency>
-    <frequency type="class" name="Return">0</frequency>
-    <frequency type="class" name="Book">0</frequency>
-    <frequency type="class" name="Publisher">0</frequency>
-    <frequency type="class" name="Author">0</frequency>
-    <frequency type="relation" name="loaned">1</frequency>
-    <frequency type="relation" name="records">50</frequency>
-    <frequency type="relation" name="commits">50</frequency>
-    <frequency type="relation" name="writes">10</frequency>
-    <frequency type="relation" name="supplies">10</frequency>
-    <frequency type="query" name="Q1">20</frequency>
-    <frequency type="query" name="Q2">300</frequency>
-    <frequency type="query" name="Q3">100</frequency>
-    <frequency type="query" name="Q4">300</frequency>
-    <frequency type="query" name="Q5">100</frequency>
+    <frequency type="class" name="Return">1</frequency>
+    <frequency type="class" name="Book">1</frequency>
+    <frequency type="class" name="Publisher">1</frequency>
+    <frequency type="class" name="Author">1</frequency>
+    <frequency type="relation" name="loaned">10</frequency>
+    <frequency type="relation" name="records">10</frequency>
+    <frequency type="relation" name="commits">10</frequency>
+    <frequency type="relation" name="writes">1</frequency>
+    <frequency type="relation" name="supplies">1</frequency>
+    <frequency type="query" name="Q1">10</frequency>
+    <frequency type="query" name="Q2">60</frequency>
+    <frequency type="query" name="Q3">20</frequency>
+    <frequency type="query" name="Q4">60</frequency>
+    <frequency type="query" name="Q5">20</frequency>
 </frequencyDoc>

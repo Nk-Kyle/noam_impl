@@ -5,11 +5,11 @@ class FrequencyTable:
     def __init__(self):
         self.data = defaultdict(lambda: ("unknown", 0))
 
-    def get_frequency(self, obj):
-        return self.data[obj][1]
+    def get_frequency(self, obj_name: str):
+        return self.data.get(obj_name, ("unknown", 0))[1]
 
-    def set_frequency(self, obj, frequency, type):
-        self.data[obj] = (type, frequency)
+    def set_frequency(self, obj_name: str, frequency: float, type):
+        self.data[obj_name] = (type, frequency)
 
     def __str__(self):
         # return as a table

@@ -28,6 +28,14 @@ class AggNode:
     def add_child(self, tuple: "RelAggNodeTuple"):
         self.children.append(tuple)
 
+    def get_all_child_node(self):
+        children = []
+        for child in self.children:
+            if not child.normalized:
+                children.append(child.node)
+                children += child.node.get_all_child_node()
+        return children
+
     def print_tree(self, level=0):
         print("\t" * level + str(self))
         for child in self.children:

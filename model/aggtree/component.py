@@ -15,6 +15,7 @@ class AggNode:
         self.is_root = is_root
         self.read_cost = 1
         self.update_cost = 1
+        self.normalized_children = []
 
     def get_tuple_of_node(self, node: "AggNode") -> "RelAggNodeTuple":
         for child in self.children:
@@ -28,6 +29,12 @@ class AggNode:
     def add_child(self, tuple: "RelAggNodeTuple"):
         self.children.append(tuple)
 
+    def get_child_by_class(self, klass: Class) -> "AggNode":
+        for child in self.children:
+            if child.node.klass == klass:
+                return child.node
+        raise Exception(f"Child with class {klass.name} not found")
+
     def get_all_child_node(self):
         children = []
         for child in self.children:
@@ -37,7 +44,11 @@ class AggNode:
         return children
 
     def print_tree(self, level=0):
-        print("\t" * level + str(self))
+        print("\t" * level + str(self) + f" {self.is_root}")
+        print(
+            "\t" * level
+            + f"Normalized Children: {[str(child) for child in self.normalized_children]}"
+        )
         for child in self.children:
             child.node.print_tree(level + 1)
 

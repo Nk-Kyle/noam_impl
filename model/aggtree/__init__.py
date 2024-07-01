@@ -11,6 +11,7 @@ class AggTree:
     def __init__(self, applied_query: str, root_class: Class):
         self.index = 1
         self.label = applied_query
+        self.applied_queries = set()
 
         AggTree.AGGTREE_INDEX += 1
         self.root = AggNode(root_class, main_root=self, is_root=True)

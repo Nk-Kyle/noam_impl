@@ -43,7 +43,7 @@ class Optimizer:
         # Set the relationship tuple to normalized
         # to give information on the need of identity
         parent = node.parent
-        parent.normalized_children.append(node)
+        parent.normalized_children.append(parent.get_tuple_of_node(node))
         parent.get_tuple_of_node(node).normalized = True
 
     def partition_agg_tree(self, agg_node: AggNode):
@@ -58,10 +58,11 @@ class Optimizer:
             cost_map[child] = CostUtil.delta_cost(self.frequency_table, child)
         max_node: AggNode = max(cost_map, key=cost_map.get)
         if cost_map[max_node] > 0:
-            print(
-                f"Partitioning {max_node.klass.name} from query {max_node.main_root.label} in {agg_node.klass.name}"
-            )
-            print(f"Delta Cost: {cost_map[max_node]}")
+            # DEBUG
+            # print(
+            #     f"Partitioning {max_node.klass.name} from query {max_node.main_root.label} in {agg_node.klass.name}"
+            # )
+            # print(f"Delta Cost: {cost_map[max_node]}")
             self.normalize(max_node)
             self.partition_agg_tree(max_node)
             self.partition_agg_tree(agg_node)
@@ -70,8 +71,9 @@ class Optimizer:
         """
         Create new Aggregate Tree from the normalized node
         """
-        for agg_tree in self.agg_trees:
-            agg_tree.print_tree()
+        # DEBUG
+        # for agg_tree in self.agg_trees:
+        #     agg_tree.print_tree()
         new_agg_trees: List[AggTree] = []
 
         new_agg_trees.extend(self.agg_trees)
@@ -101,9 +103,10 @@ class Optimizer:
         for agg_tree in self.result.values():
             self.remove_normalized_nodes(agg_tree.root)
 
-        print("================ Result ================")
-        for agg_tree in self.result.values():
-            agg_tree.print_tree()
+        # DEBUG
+        # print("================ Result ================")
+        # for agg_tree in self.result.values():
+        #     agg_tree.print_tree()
 
         return self.result
 

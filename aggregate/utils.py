@@ -9,7 +9,7 @@ class Utils:
         Populate the parent class by adding the child class attributes and a type attribute
         """
         parent.add_attribute(child.attributes)
-        parent.add_attribute("type")
+        parent.add_attribute(("type", "string"))
 
     @staticmethod
     def get_class_aggregate(

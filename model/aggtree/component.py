@@ -15,7 +15,7 @@ class AggNode:
         self.is_root = is_root
         self.read_cost = 1
         self.update_cost = 1
-        self.normalized_children = []
+        self.normalized_children: List[RelAggNodeTuple] = []
 
     def get_tuple_of_node(self, node: "AggNode") -> "RelAggNodeTuple":
         for child in self.children:

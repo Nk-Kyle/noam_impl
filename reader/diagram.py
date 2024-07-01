@@ -10,10 +10,12 @@ class ClassDiagramReader:
     class UMLType(StrEnum):
         CLASS = "uml:Class"
         ASSOCIATION = "uml:Association"
+        DATA_TYPE = "uml:DataType"
 
     def __init__(self, folder: str, xs: str = "http://schema.omg.org/spec/XMI/2.1"):
         self.folder = folder
         self.xs = xs
+        self.data_types = {}
 
     def read(self) -> ClassDiagram:
         """
@@ -46,6 +48,14 @@ class ClassDiagramReader:
             raise Exception("Model tag not found")
 
         members = modelTag.findall("ownedMember")
+
+        # Initialize the datatypes
+        for member in members:
+            member_type = member.attrib[f"{{{self.xs}}}type"]
+            if member_type == self.UMLType.DATA_TYPE:
+                self.data_types[member.attrib[f"{{{self.xs}}}id"]] = member.attrib[
+                    "name"
+                ]
 
         # First pass: read all classes
         for member in members:
@@ -92,7 +102,10 @@ class ClassDiagramReader:
         # </ownedMember>
         klass = Class(class_tag.attrib[f"{{{self.xs}}}id"], class_tag.attrib["name"])
         for attribute in class_tag.findall("ownedAttribute"):
-            klass.add_attribute(attribute.attrib["name"])
+            attr_type = self.data_types.get(
+                attribute.attrib["type"], attribute.attrib["type"]
+            )
+            klass.add_attribute((attribute.attrib["name"], attr_type))
             if attribute.find("appliedStereotype") is not None:
                 stereotype_value = attribute.find("appliedStereotype").attrib[
                     f"{{{self.xs}}}value"

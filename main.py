@@ -10,4 +10,5 @@ agg_trees = agg.create_optimized_trees()
 converter = Converter(class_diagram)
 for agg_tree in agg_trees:
     print("=====================================")
-    converter.aggregate_to_etf(agg_tree)
+    etf = converter.aggregate_to_etf(agg_tree)
+    eao = converter.etf_to_eao(etf)

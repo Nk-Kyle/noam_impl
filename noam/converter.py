@@ -20,9 +20,16 @@ class Converter:
         for key, value in return_dict.items():
             collection.add_entry(key, value)
 
-        collection.print_schema()
-
         return collection
+
+    def etf_to_eao(self, collection: NoAMCollection) -> NoAMCollection:
+        """
+        Convert the ETF Collection to EAO Collection
+        """
+        eao_collection = NoAMCollection(collection.name)
+        eao_collection.add_entry("e", collection.schema)
+        eao_collection.print_schema()
+        return eao_collection
 
     def __aggregate_recursive(
         self, node: AggNode

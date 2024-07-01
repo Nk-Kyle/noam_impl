@@ -4,6 +4,6 @@ from aggregate.optimizer import Optimizer
 from noam.converter import Converter
 
 reader = Reader("schemas/perpustakaan")
-class_diagram, queries, frequency_table = reader.read()
-agg = Aggregator(class_diagram, queries, frequency_table)
+class_diagram, query_doc, frequency_table = reader.read()
+agg = Aggregator(class_diagram, query_doc, frequency_table)
 agg.create_optimized_trees()

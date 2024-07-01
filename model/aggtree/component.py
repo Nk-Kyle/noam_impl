@@ -16,6 +16,7 @@ class AggNode:
         self.read_cost = 1
         self.update_cost = 1
         self.normalized_children: List[RelAggNodeTuple] = []
+        self.related_attributes = set()
 
     def get_tuple_of_node(self, node: "AggNode") -> "RelAggNodeTuple":
         for child in self.children:
@@ -43,14 +44,16 @@ class AggNode:
                 children += child.node.get_all_child_node()
         return children
 
-    def print_tree(self, level=0):
+    def print_tree(self, level=0, with_attributes=False):
         print("\t" * level + str(self) + f" {self.is_root}")
         print(
             "\t" * level
             + f"Normalized Children: {[str(child) for child in self.normalized_children]}"
         )
+        if with_attributes:
+            print("\t" * level + f"Attributes: {self.related_attributes}")
         for child in self.children:
-            child.node.print_tree(level + 1)
+            child.node.print_tree(level + 1, with_attributes)
 
     @property
     def descendants_class_rel_count(self):

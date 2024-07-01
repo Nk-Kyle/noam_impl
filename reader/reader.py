@@ -2,6 +2,8 @@ import xml.etree.ElementTree as ET
 from os import path
 from enum import StrEnum
 from model.diagram import ClassDiagram, Class, Relationship
+from model.query import QueryDocument
+from model.frequency import FrequencyTable
 from utils.choices import Stereotype, RelType
 from .diagram import ClassDiagramReader
 from .query import QueryReader
@@ -19,9 +21,9 @@ class Reader:
         self.folder = folder
         self.xs = xs
 
-    def read(self) -> Tuple[ClassDiagram, QueryReader, FrequencyReader]:
+    def read(self) -> Tuple[ClassDiagram, QueryDocument, FrequencyTable]:
         class_diagram = ClassDiagramReader(self.folder, self.xs).read()
-        queries = QueryReader(self.folder, class_diagram).read()
+        query_doc = QueryReader(self.folder, class_diagram).read()
         frequency_table = FrequencyReader(self.folder).read()
 
-        return class_diagram, queries, frequency_table
+        return class_diagram, query_doc, frequency_table

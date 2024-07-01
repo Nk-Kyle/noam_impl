@@ -1,5 +1,5 @@
 from model.diagram import ClassDiagram, Class
-from model.query import Query
+from model.query import QueryDocument
 from model.frequency import FrequencyTable
 from typing import List, Dict, Set, Tuple
 from utils.choices import RelType, Stereotype
@@ -15,11 +15,11 @@ class Aggregator:
     def __init__(
         self,
         class_diagram: ClassDiagram,
-        queries: List[Query],
+        query_doc: QueryDocument,
         frequency_table: FrequencyTable,
     ):
         self.class_diagram = class_diagram
-        self.queries = queries
+        self.query_doc = query_doc
         self.frequency_table = frequency_table
         self.agg_map: Dict[Class, Set[Class]] = defaultdict(set)
         self.pruned_map: Dict[Class, Dict[str, Set[Relationship]]] = defaultdict(
@@ -36,6 +36,7 @@ class Aggregator:
 
         self.agg_trees = Optimizer(self.frequency_table, self.agg_trees).optimize()
         self.connect_value_objects()
+        self.get_related_attributes()
 
     def aggregate_relationship(self):
         """
@@ -76,7 +77,7 @@ class Aggregator:
         """
         Create the aggregate trees from the class diagram
         """
-        for query in self.queries:
+        for query in self.query_doc.get_all_queries():
             agg_tree = Transformer.create_aggtree_from_query(query)
             self.prune_redirect_path(agg_tree)
             self.agg_trees.append(agg_tree)
@@ -120,7 +121,12 @@ class Aggregator:
             for node in agg_tree.traverse(agg_tree.root):
                 self.add_pruned_VOs(node)
 
-            agg_tree.print_tree()
+    def get_related_attributes(self):
+        for agg_tree in self.agg_trees:
+            queries = self.query_doc.get_queries(list(agg_tree.applied_queries))
+            for query in queries:
+                for node in agg_tree.traverse(agg_tree.root):
+                    node.related_attributes.update(query.get_attributes(node.klass))
 
     def add_pruned_VOs(self, node: AggNode) -> Set[RelAggNodeTuple]:
         """

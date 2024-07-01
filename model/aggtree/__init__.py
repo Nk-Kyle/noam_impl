@@ -11,7 +11,7 @@ class AggTree:
     def __init__(self, applied_query: str, root_class: Class):
         self.index = 1
         self.label = applied_query
-        self.applied_queries = set()
+        self.applied_queries = set([applied_query])
 
         AggTree.AGGTREE_INDEX += 1
         self.root = AggNode(root_class, main_root=self, is_root=True)
@@ -22,12 +22,13 @@ class AggTree:
             nodes.extend(self.traverse(child.node))
         return nodes
 
-    def print_tree(self):
+    def print_tree(self, with_attributes=False):
         print(f"AggTree {self.label}")
+        print(f"Applied Queries: {self.applied_queries}")
         for _ in range(20):
             print("-", end="")
         print()
-        self.root.print_tree()
+        self.root.print_tree(with_attributes=with_attributes)
         for _ in range(20):
             print("-", end="")
         print()

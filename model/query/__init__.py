@@ -1,6 +1,24 @@
 from model.klass import Class
 from model.relationship import Relationship
 from .component import QueryNode, RelNodeTuple
+from typing import List
+
+
+class QueryDocument:
+    def __init__(self):
+        self.queries = {}
+
+    def add_query(self, query: "Query"):
+        self.queries[query.name] = query
+
+    def get_query(self, name: str) -> "Query":
+        return self.queries[name]
+
+    def get_queries(self, names: List[str]) -> List["Query"]:
+        return [self.queries[name] for name in names]
+
+    def get_all_queries(self) -> List["Query"]:
+        return list(self.queries.values())
 
 
 class Query:
@@ -25,6 +43,10 @@ class Query:
             if found is not None:
                 return found
         return None
+
+    def get_attributes(self, klass: Class) -> list:
+        node = self.find_node(klass)
+        return node.attributes if node is not None else []
 
     def print_tree(self):
         print(f"Query {self.name}")

@@ -38,6 +38,7 @@ class Optimizer:
         tree 1: agg_tree with node normalized
         tree 2: node as a separate tree and its children
         """
+        node.main_root.query_map[node.main_root.label][node.klass].add(node.klass.pk)
         node.is_root = True
 
         # Set the relationship tuple to normalized
@@ -118,6 +119,11 @@ class Optimizer:
         Precondition:
         - The tree1 and tree2 have the same root class
         """
+        # Update tree2 query map to tree1
+        for query, class_map in tree2.query_map.items():
+            for klass, attributes in class_map.items():
+                tree1.query_map[query][klass].update(attributes)
+
         tree1.applied_queries.add(tree2.label)
         self.merge_node(tree1.root, tree2.root)
 

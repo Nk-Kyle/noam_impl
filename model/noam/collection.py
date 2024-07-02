@@ -1,4 +1,4 @@
-from typing import Dict, Any, Set
+from typing import Any, Set
 
 
 class NoAMCollection:
@@ -6,15 +6,18 @@ class NoAMCollection:
         self.name = name
         self.schema = {}
         self.related_queries = set()
+        self.ek_queries = {}
 
     def __str__(self):
         return self.name or "NoAM Collection"
 
-    def add_entry(self, ek: str, ev: Any):
+    def add_entry(self, ek: str, ev: Any, queries: Set[str] = None):
         """
         Add entry to schema
         """
         self.schema[ek] = ev
+        if queries:
+            self.ek_queries[ek] = queries
 
     def add_related_queries(self, query: str | Set[str]):
         """

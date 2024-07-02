@@ -14,7 +14,7 @@ class AggTree:
         self.label = applied_query
         self.applied_queries = set([applied_query])
         self.query_map: Dict[str, Dict[Class, Set[str]]] = defaultdict(
-            lambda: defaultdict(set)
+            lambda: defaultdict(set)  # Query -> {Class -> Set[Attributes]}
         )
 
         AggTree.AGGTREE_INDEX += 1
@@ -25,9 +25,6 @@ class AggTree:
         for child in node.children:
             nodes.extend(self.traverse(child.node))
         return nodes
-
-    def update_query_map(self):
-        self.query_map[self.label] = self.root.get_mapped_attributes()
 
     def print_tree(self, with_attributes=False):
         print(f"AggTree {self.label}")

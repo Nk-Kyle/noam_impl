@@ -27,9 +27,14 @@ class Converter:
         collection = NoAMCollection(agg_tree.root.klass.name)
         collection.add_related_queries(agg_tree.applied_queries)
 
+        # add all the attributes to the collection from the aggregate tree
         return_dict = self.__aggregate_recursive(agg_tree.root)
         for key, value in return_dict.items():
             collection.add_entry(key, value, self.key_query_map[key])
+
+        # add all root attributes to the collection
+        for attr in agg_tree.root.klass.attributes:
+            collection.add_entry(attr, agg_tree.root.klass.attributes[attr])
 
         return collection
 

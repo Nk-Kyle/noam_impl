@@ -10,5 +10,6 @@ agg_trees = agg.create_optimized_trees()
 converter = Converter(frequency_table)
 for agg_tree in agg_trees:
     etf = converter.aggregate_to_etf(agg_tree)
-    partitioner = converter.etf_to_partition(etf)
-    partitioner.print_AM()
+    etf.print_schema()
+    # partitioner = converter.etf_to_partition(etf)
+    # partitioner.print_AM()

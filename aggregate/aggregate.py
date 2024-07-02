@@ -124,6 +124,10 @@ class Aggregator:
                 self.add_pruned_VOs(node)
 
     def get_related_attributes(self):
+
+        unused_attrs = self.unused_attributes()
+        root_classes = self.root_class()
+
         for agg_tree in self.agg_trees:
             queries = self.query_doc.get_queries(list(agg_tree.applied_queries))
             for query in queries:
@@ -132,9 +136,13 @@ class Aggregator:
                     node.related_attributes.update(query.get_attributes(node.klass))
                     agg_tree.query_map[query.name][node.klass].update(attributes)
 
-    def add_pruned_VOs(self, node: AggNode) -> Set[RelAggNodeTuple]:
+                    if node.klass not in root_classes:
+                        # If not root class, make sure to add unused attributes
+                        node.related_attributes.update(unused_attrs[node.klass])
+
+    def add_pruned_VOs(self, node: AggNode):
         """
-        Get the pruned value objects of a class
+        Add the pruned value objects of a class
         """
 
         pruneds: Set[Relationship] = set()
@@ -155,3 +163,32 @@ class Aggregator:
         for pruned in pruneds:
             new_node = AggNode(pruned.from_class, node.main_root, node)
             node.add_child(RelAggNodeTuple(pruned, new_node))
+
+    def unused_attributes(self) -> Dict[Class, Set[str]]:
+        """
+        Get the unused attributes of the class diagram for each class
+        from the queries
+        """
+        unused = defaultdict(set)  # Class -> Set[Attribute]
+
+        # Get the used attributes from the queries
+        used_attributes = defaultdict(set)  # Class -> Set[Attribute]
+        for klass in self.class_diagram.classes.values():
+            for query in self.query_doc.get_all_queries():
+                used_attributes[klass].update(query.get_attributes(klass))
+
+        # Get the unused attributes
+        for klass in self.class_diagram.classes.values():
+            all_attributes = set(klass.attributes.keys())
+            unused[klass] = all_attributes - used_attributes[klass]
+
+        return unused
+
+    def root_class(self) -> Set[Class]:
+        """
+        Get the root classes of the class diagram
+        """
+        roots = set()
+        for agg_tree in self.agg_trees:
+            roots.add(agg_tree.root.klass)
+        return roots

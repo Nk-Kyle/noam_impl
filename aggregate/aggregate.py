@@ -128,7 +128,9 @@ class Aggregator:
             queries = self.query_doc.get_queries(list(agg_tree.applied_queries))
             for query in queries:
                 for node in agg_tree.traverse(agg_tree.root):
+                    attributes = query.get_attributes(node.klass)
                     node.related_attributes.update(query.get_attributes(node.klass))
+                    agg_tree.query_map[query.name][node.klass].update(attributes)
 
     def add_pruned_VOs(self, node: AggNode) -> Set[RelAggNodeTuple]:
         """

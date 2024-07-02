@@ -11,4 +11,5 @@ converter = Converter(class_diagram)
 for agg_tree in agg_trees:
     print("=====================================")
     etf = converter.aggregate_to_etf(agg_tree)
+    etf.print_schema()
     eao = converter.etf_to_eao(etf)

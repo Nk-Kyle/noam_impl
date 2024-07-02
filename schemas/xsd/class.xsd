@@ -1,0 +1,99 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ownedMember" type="ownedMemberType" />
+    <xs:complexType name="appliedStereotypeType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute ref="ns:value" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ownedAttributeType" mixed="true">
+        <xs:sequence>
+            <xs:element type="appliedStereotypeType" name="appliedStereotype" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="aggregation" use="optional" />
+        <xs:attribute type="xs:string" name="isDerived" use="optional" />
+        <xs:attribute type="xs:string" name="isDerivedUnion" use="optional" />
+        <xs:attribute type="xs:string" name="isID" use="optional" />
+        <xs:attribute type="xs:string" name="isLeaf" use="optional" />
+        <xs:attribute type="xs:string" name="isReadOnly" use="optional" />
+        <xs:attribute type="xs:string" name="isStatic" use="optional" />
+        <xs:attribute type="xs:string" name="name" use="optional" />
+        <xs:attribute type="xs:string" name="type" use="optional" />
+        <xs:attribute type="xs:string" name="visibility" use="optional" />
+        <xs:attribute ref="ns:id" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute ref="ns:type" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+    </xs:complexType>
+    <xs:complexType name="ownedMemberType" mixed="true">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="appliedStereotypeType" name="appliedStereotype" />
+            <xs:element type="ownedAttributeType" name="ownedAttribute" />
+            <xs:element type="generalizationType" name="generalization" />
+            <xs:element type="memberEndType" name="memberEnd" />
+            <xs:element type="ownedEndType" name="ownedEnd" />
+        </xs:choice>
+        <xs:attribute type="xs:string" name="isAbstract" use="optional" />
+        <xs:attribute type="xs:string" name="isActive" use="optional" />
+        <xs:attribute type="xs:string" name="isLeaf" use="optional" />
+        <xs:attribute type="xs:string" name="name" use="optional" />
+        <xs:attribute type="xs:string" name="visibility" use="optional" />
+        <xs:attribute ref="ns:id" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute ref="ns:type" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute type="xs:string" name="isDerived" use="optional" />
+    </xs:complexType>
+    <xs:complexType name="generalizationType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="general" use="optional" />
+                <xs:attribute ref="ns:id" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+                <xs:attribute ref="ns:type" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="memberEndType" mixed="true">
+        <xs:sequence>
+            <xs:element type="lowerValueType" name="lowerValue" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute ref="ns:idref" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute type="xs:string" name="aggregation" use="optional" />
+        <xs:attribute type="xs:string" name="association" use="optional" />
+        <xs:attribute type="xs:string" name="isDerived" use="optional" />
+        <xs:attribute type="xs:string" name="isDerivedUnion" use="optional" />
+        <xs:attribute type="xs:string" name="isLeaf" use="optional" />
+        <xs:attribute type="xs:string" name="isNavigable" use="optional" />
+        <xs:attribute type="xs:string" name="isReadOnly" use="optional" />
+        <xs:attribute type="xs:string" name="isStatic" use="optional" />
+        <xs:attribute type="xs:string" name="type" use="optional" />
+        <xs:attribute ref="ns:id" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute ref="ns:type" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute type="xs:string" name="name" use="optional" />
+    </xs:complexType>
+    <xs:complexType name="lowerValueType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:byte" name="value" use="optional" />
+                <xs:attribute ref="ns:id" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+                <xs:attribute ref="ns:type" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ownedEndType" mixed="true">
+        <xs:sequence>
+            <xs:element type="lowerValueType" name="lowerValue" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="aggregation" use="optional" />
+        <xs:attribute type="xs:string" name="association" use="optional" />
+        <xs:attribute type="xs:string" name="isDerived" use="optional" />
+        <xs:attribute type="xs:string" name="isDerivedUnion" use="optional" />
+        <xs:attribute type="xs:string" name="isLeaf" use="optional" />
+        <xs:attribute type="xs:string" name="isNavigable" use="optional" />
+        <xs:attribute type="xs:string" name="isReadOnly" use="optional" />
+        <xs:attribute type="xs:string" name="isStatic" use="optional" />
+        <xs:attribute type="xs:string" name="type" use="optional" />
+        <xs:attribute ref="ns:id" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute ref="ns:type" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute ref="ns:idref" xmlns:ns="http://schema.omg.org/spec/XMI/2.1" />
+        <xs:attribute type="xs:string" name="name" use="optional" />
+    </xs:complexType>
+</xs:schema>

@@ -6,9 +6,11 @@
             <attribute searchKey="true">id</attribute>
             <relation name="records">
                 <class name="Loan">
+                    <attribute>id</attribute>
                     <attribute>loanedAt</attribute>
                     <relation name="loaned">
                         <class name="Member">
+                            <attribute>id</attribute>
                             <attribute>type</attribute>
                             <attribute>name</attribute>
                             <attribute>studentId</attribute>
@@ -18,6 +20,7 @@
                     </relation>
                     <relation name="commits">
                         <class name="Return">
+                            <attribute>id</attribute>
                             <attribute>penalty</attribute>
                             <attribute>returnedAt</attribute>
                         </class>
@@ -33,11 +36,13 @@
             <attribute>description</attribute>
             <relation name="writes">
                 <class name="Author">
+                    <attribute>id</attribute>
                     <attribute>name</attribute>
                 </class>
             </relation>
             <relation name="supplies">
                 <class name="Publisher">
+                    <attribute>id</attribute>
                     <attribute>name</attribute>
                     <attribute>contact</attribute>
                 </class>
@@ -56,15 +61,18 @@
             <attribute>name</attribute>
             <relation name="loaned">
                 <class name="Loan">
+                    <attribute>id</attribute>
                     <attribute>loanedAt</attribute>
                     <relation name="records">
                         <class name="Book">
+                            <attribute>id</attribute>
                             <attribute>name</attribute>
                             <attribute>description</attribute>
                         </class>
                     </relation>
                     <relation name="commits">
                         <class name="Return">
+                            <attribute>id</attribute>
                             <attribute>penalty</attribute>
                             <attribute>returnedAt</attribute>
                         </class>
@@ -102,10 +110,12 @@
             <attribute>name</attribute>
             <relation name="writes">
                 <class name="Book">
+                    <attribute>id</attribute>
                     <attribute>name</attribute>
                     <attribute>description</attribute>
                     <relation name="supplies">
                         <class name="Publisher">
+                            <attribute>id</attribute>
                             <attribute>name</attribute>
                             <attribute>contact</attribute>
                         </class>

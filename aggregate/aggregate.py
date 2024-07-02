@@ -202,6 +202,9 @@ class Aggregator:
         """
         Get the unused value objects of the class diagram
         """
+        if self.unused_vos:
+            return self.unused_vos
+
         used: Set[Class] = set()
         for query in self.query_doc.get_all_queries():
             for klass in query.all_classes():
@@ -213,7 +216,8 @@ class Aggregator:
             if klass.stereotype == Stereotype.VALUE_OBJECT:
                 all_vos.add(klass)
 
-        return all_vos - used
+        self.unused_vos = all_vos - used
+        return self.unused_vos
 
     def get_root_classes(self) -> Set[Class]:
         """

@@ -19,6 +19,7 @@ class Converter:
         return_dict = self.__aggregate_recursive(agg_tree.root)
         for key, value in return_dict.items():
             collection.add_entry(key, value)
+        collection.add_related_queries(agg_tree.applied_queries)
 
         return collection
 
@@ -28,7 +29,8 @@ class Converter:
         """
         eao_collection = NoAMCollection(collection.name)
         eao_collection.add_entry("e", collection.schema)
-        eao_collection.print_schema()
+        eao_collection.add_related_queries(collection.related_queries)
+
         return eao_collection
 
     def __aggregate_recursive(
@@ -52,12 +54,12 @@ class Converter:
         for norm_child in node.normalized_children:
             pk = norm_child.node.klass.pk
             if norm_child.rel.count(norm_child.node.klass) > 1:
-                return_dict[norm_child.node.klass.name] = [
-                    {pk: norm_child.node.klass.attributes[pk]}
+                return_dict[f"{norm_child.node.klass.name}_{pk}"] = [
+                    norm_child.node.klass.attributes[pk]
                 ]
             else:
-                return_dict[norm_child.node.klass.name] = {
-                    pk: norm_child.node.klass.attributes[pk]
-                }
+                return_dict[f"{norm_child.node.klass.name}_{pk}"] = (
+                    norm_child.node.klass.attributes[pk]
+                )
 
         return return_dict

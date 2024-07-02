@@ -4,6 +4,7 @@ from model.klass import Class
 from typing import Dict, List, Set
 from collections import defaultdict
 from pprint import pprint
+from noam.partitioner import Partitioner
 
 
 class Converter:
@@ -39,6 +40,13 @@ class Converter:
         eao_collection.add_related_queries(collection.related_queries)
 
         return eao_collection
+
+    def etf_to_partition(self, collection: NoAMCollection) -> Partitioner:
+        """
+        Convert the ETF Collection to Partitioner
+        """
+        partitioner = Partitioner(collection)
+        return partitioner
 
     def __aggregate_recursive(
         self, node: AggNode

@@ -29,3 +29,9 @@ class ClassDiagram:
 
     def get_relationship_by_name(self, relationship_name):
         return self.relationships_names.get(relationship_name)
+
+    def get_relationship_of_vo_to_entity(self, vo, entity):
+        for relationship in self.relationships.values():
+            if relationship.from_class == vo and relationship.to_class == entity:
+                return relationship
+        return None

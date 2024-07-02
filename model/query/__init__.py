@@ -1,7 +1,7 @@
 from model.klass import Class
 from model.relationship import Relationship
 from .component import QueryNode, RelNodeTuple
-from typing import List
+from typing import List, Set
 
 
 class QueryDocument:
@@ -47,6 +47,16 @@ class Query:
     def get_attributes(self, klass: Class) -> list:
         node = self.find_node(klass)
         return node.attributes if node is not None else []
+
+    def all_classes(self) -> Set[Class]:
+        return self._all_classes(self.root)
+
+    def _all_classes(self, node: QueryNode) -> Set[Class]:
+        classes = set()
+        classes.add(node.klass)
+        for child in node.children:
+            classes.update(self._all_classes(child.node))
+        return classes
 
     def print_tree(self):
         print(f"Query {self.name}")

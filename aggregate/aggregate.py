@@ -26,6 +26,7 @@ class Aggregator:
             lambda: defaultdict(set)
         )  # Class -> {query -> Relationship}
         self.agg_trees: List[AggTree] = []
+        self.unused_vos: Set[Class] = set()
 
     def create_optimized_trees(self) -> List[AggTree]:
         """
@@ -122,11 +123,12 @@ class Aggregator:
         for agg_tree in self.agg_trees:
             for node in agg_tree.traverse(agg_tree.root):
                 self.add_pruned_VOs(node)
+                self.add_unused_VOs(node)
 
     def get_related_attributes(self):
 
-        unused_attrs = self.unused_attributes()
-        root_classes = self.root_class()
+        unused_attrs = self.get_unused_attributes()
+        root_classes = self.get_root_classes()
 
         for agg_tree in self.agg_trees:
             queries = self.query_doc.get_queries(list(agg_tree.applied_queries))
@@ -164,7 +166,19 @@ class Aggregator:
             new_node = AggNode(pruned.from_class, node.main_root, node)
             node.add_child(RelAggNodeTuple(pruned, new_node))
 
-    def unused_attributes(self) -> Dict[Class, Set[str]]:
+    def add_unused_VOs(self, node: AggNode):
+        """
+        Add the unused value objects of a class
+        """
+        unused = self.get_unused_value_objects()
+        for vo in unused:
+            rel = self.class_diagram.get_relationship_of_vo_to_entity(vo, node.klass)
+            if rel is not None:
+                print(f"Adding unused VO {vo.name} to {node.klass.name}")
+                new_node = AggNode(vo, node.main_root, node)
+                node.add_child(RelAggNodeTuple(rel, new_node))
+
+    def get_unused_attributes(self) -> Dict[Class, Set[str]]:
         """
         Get the unused attributes of the class diagram for each class
         from the queries
@@ -184,7 +198,24 @@ class Aggregator:
 
         return unused
 
-    def root_class(self) -> Set[Class]:
+    def get_unused_value_objects(self) -> Set[Class]:
+        """
+        Get the unused value objects of the class diagram
+        """
+        used: Set[Class] = set()
+        for query in self.query_doc.get_all_queries():
+            for klass in query.all_classes():
+                if klass.stereotype == Stereotype.VALUE_OBJECT:
+                    used.add(klass)
+
+        all_vos = set()
+        for klass in self.class_diagram.classes.values():
+            if klass.stereotype == Stereotype.VALUE_OBJECT:
+                all_vos.add(klass)
+
+        return all_vos - used
+
+    def get_root_classes(self) -> Set[Class]:
         """
         Get the root classes of the class diagram
         """

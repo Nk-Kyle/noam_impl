@@ -7,11 +7,11 @@
 			<appliedStereotype xmi:value="Value Object" />
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
-				visibility="private" xmi:id="Oin3xgmGAqAAdQyt" xmi:type="uml:Property">
+				visibility="public" xmi:id="Oin3xgmGAqAAdQyt" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
-				visibility="private" xmi:id="RhSPxgmGAqAAdQzQ" xmi:type="uml:Property">
+				visibility="public" xmi:id="RhSPxgmGAqAAdQzQ" xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
 		<ownedMember name="Value Object" xmi:id="Value Object" xmi:type="uml:Stereotype">
@@ -20,12 +20,12 @@
 			visibility="public" xmi:id="YTkfxgmGAqAAdQ1i" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
-				visibility="private" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
+				visibility="public" xmi:id="4TkfxgmGAqAAdQ1j" xmi:type="uml:Property">
 				<appliedStereotype xmi:value="PK" />
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
-				visibility="private" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
+				visibility="public" xmi:id="ETkfxgmGAqAAdQ1k" xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
 		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Address"
@@ -33,26 +33,26 @@
 			<appliedStereotype xmi:value="Value Object" />
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="city" type="string_id"
-				visibility="private" xmi:id="PNYIJgmGAqAAdQ5E" xmi:type="uml:Property">
+				visibility="public" xmi:id="PNYIJgmGAqAAdQ5E" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="address" type="string_id"
-				visibility="private" xmi:id="vNYIJgmGAqAAdQ5F" xmi:type="uml:Property">
+				visibility="public" xmi:id="vNYIJgmGAqAAdQ5F" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="postal" type="string_id"
-				visibility="private" xmi:id="eN5IJgmGAqAAdQ6V" xmi:type="uml:Property">
+				visibility="public" xmi:id="eN5IJgmGAqAAdQ6V" xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
 		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Student"
 			visibility="public" xmi:id="pvgoJgmGAqAAdQ8C" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="studentId" type="string_id"
-				visibility="private" xmi:id="VvgoJgmGAqAAdQ8D" xmi:type="uml:Property">
+				visibility="public" xmi:id="VvgoJgmGAqAAdQ8D" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="year" type="integer_id"
-				visibility="private" xmi:id="NvgoJgmGAqAAdQ8E" xmi:type="uml:Property">
+				visibility="public" xmi:id="NvgoJgmGAqAAdQ8E" xmi:type="uml:Property">
 			</ownedAttribute>
 			<generalization general="YTkfxgmGAqAAdQ1i" xmi:id="o4ooJgmGAqAAdQ8Z"
 				xmi:type="uml:Generalization">
@@ -62,7 +62,7 @@
 			visibility="public" xmi:id="F3soJgmGAqAAdQ9Y" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="employeeId"
-				type="string_id" visibility="private" xmi:id="13soJgmGAqAAdQ9Z"
+				type="string_id" visibility="public" xmi:id="13soJgmGAqAAdQ9Z"
 				xmi:type="uml:Property">
 			</ownedAttribute>
 			<generalization general="YTkfxgmGAqAAdQ1i" xmi:id="Qj8oJgmGAqAAdQ9j"
@@ -73,12 +73,12 @@
 			visibility="public" xmi:id="9D1oJgmGAqAAdRAb" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
-				visibility="private" xmi:id="jD1oJgmGAqAAdRAc" xmi:type="uml:Property">
+				visibility="public" xmi:id="jD1oJgmGAqAAdRAc" xmi:type="uml:Property">
 				<appliedStereotype xmi:value="PK" />
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="loanedAt"
-				type="datetime_id" visibility="private" xmi:id="jD1oJgmGAqAAdRAd"
+				type="datetime_id" visibility="public" xmi:id="jD1oJgmGAqAAdRAd"
 				xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
@@ -86,16 +86,16 @@
 			visibility="public" xmi:id="CFQYJgmGAqAAdRCk" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
-				visibility="private" xmi:id="yFQYJgmGAqAAdRCl" xmi:type="uml:Property">
+				visibility="public" xmi:id="yFQYJgmGAqAAdRCl" xmi:type="uml:Property">
 				<appliedStereotype xmi:value="PK" />
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="penalty" type="integer_id"
-				visibility="private" xmi:id="yFQYJgmGAqAAdRCm" xmi:type="uml:Property">
+				visibility="public" xmi:id="yFQYJgmGAqAAdRCm" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="returnedAt"
-				type="datetime_id" visibility="private" xmi:id="g0kYJgmGAqAAdRDA"
+				type="datetime_id" visibility="public" xmi:id="g0kYJgmGAqAAdRDA"
 				xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
@@ -103,16 +103,16 @@
 			visibility="public" xmi:id="u0BYJgmGAqAAdRE6" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
-				visibility="private" xmi:id="B0BYJgmGAqAAdRE7" xmi:type="uml:Property">
+				visibility="public" xmi:id="B0BYJgmGAqAAdRE7" xmi:type="uml:Property">
 				<appliedStereotype xmi:value="PK" />
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
-				visibility="private" xmi:id="h0BYJgmGAqAAdRE8" xmi:type="uml:Property">
+				visibility="public" xmi:id="h0BYJgmGAqAAdRE8" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="description"
-				type="string_id" visibility="private" xmi:id="5U.4JgmGAqAAdRHX"
+				type="string_id" visibility="public" xmi:id="5U.4JgmGAqAAdRHX"
 				xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
@@ -120,32 +120,32 @@
 			visibility="public" xmi:id="CTckJgmGAqAAdRKp" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
-				visibility="private" xmi:id="iTckJgmGAqAAdRKq" xmi:type="uml:Property">
+				visibility="public" xmi:id="iTckJgmGAqAAdRKq" xmi:type="uml:Property">
 				<appliedStereotype xmi:value="PK" />
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
-				visibility="private" xmi:id="STckJgmGAqAAdRKr" xmi:type="uml:Property">
+				visibility="public" xmi:id="STckJgmGAqAAdRKr" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="contact" type="string_id"
-				visibility="private" xmi:id="STckJgmGAqAAdRKs" xmi:type="uml:Property">
+				visibility="public" xmi:id="STckJgmGAqAAdRKs" xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
 		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Author"
 			visibility="public" xmi:id="dLiUJgmGAqAAdRNp" xmi:type="uml:Class">
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="integer_id"
-				visibility="private" xmi:id="9LiUJgmGAqAAdRNq" xmi:type="uml:Property">
+				visibility="public" xmi:id="9LiUJgmGAqAAdRNq" xmi:type="uml:Property">
 				<appliedStereotype xmi:value="PK" />
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
-				visibility="private" xmi:id="DLiUJgmGAqAAdRNr" xmi:type="uml:Property">
+				visibility="public" xmi:id="DLiUJgmGAqAAdRNr" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="description"
-				type="string_id" visibility="private" xmi:id="DLiUJgmGAqAAdRNs"
+				type="string_id" visibility="public" xmi:id="DLiUJgmGAqAAdRNs"
 				xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>
@@ -154,11 +154,11 @@
 			<appliedStereotype xmi:value="Value Object" />
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
-				visibility="private" xmi:id="Vo2yFgmGAqAAdgqI" xmi:type="uml:Property">
+				visibility="public" xmi:id="Vo2yFgmGAqAAdgqI" xmi:type="uml:Property">
 			</ownedAttribute>
 			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="subcategory"
-				type="string_id" visibility="private" xmi:id="to2yFgmGAqAAdgqJ"
+				type="string_id" visibility="public" xmi:id="to2yFgmGAqAAdgqJ"
 				xmi:type="uml:Property">
 			</ownedAttribute>
 		</ownedMember>

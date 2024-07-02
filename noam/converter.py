@@ -1,5 +1,6 @@
 from model.noam.collection import NoAMCollection
 from model.aggtree import AggTree, AggNode
+from model.frequency import FrequencyTable
 from model.klass import Class
 from typing import Dict, List, Set
 from collections import defaultdict
@@ -9,11 +10,12 @@ from noam.partitioner import Partitioner
 
 class Converter:
 
-    def __init__(self):
+    def __init__(self, frequency_table: FrequencyTable):
         self.key_query_map = defaultdict(set)
         self.query_map: Dict[str, Dict[Class, Set[str]]] = defaultdict(
             lambda: defaultdict(set)
         )
+        self.frequency_table = frequency_table
 
     def aggregate_to_etf(self, agg_tree: AggTree) -> NoAMCollection:
         """
@@ -45,7 +47,7 @@ class Converter:
         """
         Convert the ETF Collection to Partitioner
         """
-        partitioner = Partitioner(collection)
+        partitioner = Partitioner(collection, self.frequency_table)
         return partitioner
 
     def __aggregate_recursive(

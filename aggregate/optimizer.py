@@ -13,7 +13,7 @@ class Optimizer:
         self.result: Dict[Class, AggTree] = {}
         self.set_initial_cost()
 
-    def optimize(self):
+    def optimize(self) -> List[AggTree]:
         """
         Optimize the aggregate tree
         """

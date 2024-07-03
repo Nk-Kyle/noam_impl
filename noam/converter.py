@@ -11,9 +11,11 @@ from noam.partitioner import Partitioner
 class Converter:
 
     def __init__(self, frequency_table: FrequencyTable):
-        self.key_query_map = defaultdict(set)
-        self.query_map: Dict[str, Dict[Class, Set[str]]] = defaultdict(
+        self.key_query_map: Dict[Class, Dict[str, Set[str]]] = defaultdict(
             lambda: defaultdict(set)
+        )  # Class -> {Attribute -> Set[Query]}
+        self.query_map: Dict[str, Dict[Class, Set[str]]] = defaultdict(
+            lambda: defaultdict(set)  # Query -> {Class -> Set[Attribute]}
         )
         self.frequency_table = frequency_table
 
@@ -21,7 +23,7 @@ class Converter:
         """
         Convert the aggregate tree to ETF Collection
         """
-        self.key_query_map = defaultdict(set)
+        self.key_query_map = defaultdict(lambda: defaultdict(set))
         self.query_map = agg_tree.query_map
 
         collection = NoAMCollection(agg_tree.root.klass.name)
@@ -30,7 +32,9 @@ class Converter:
         # add all the attributes to the collection from the aggregate tree
         return_dict = self.__aggregate_recursive(agg_tree.root)
         for key, value in return_dict.items():
-            collection.add_entry(key, value, self.key_query_map[key])
+            collection.add_entry(
+                key, value, self.key_query_map[agg_tree.root.klass][key]
+            )
 
         # add all root attributes to the collection
         for attr in agg_tree.root.klass.attributes:
@@ -69,15 +73,18 @@ class Converter:
 
         for child in node.children:
             child_dict = self.__aggregate_recursive(child.node)
+            child_queries = self.__get_child_queries(child_dict, child.node.klass)
             if child.rel.count(child.node.klass) > 1:
                 return_dict[child.node.klass.name] = [child_dict]
-                self.__map_child_dict_queries(child_dict, child.node.klass.name)
-
+                # Query Mapping
+                self.__map_child_queries(
+                    node.klass, child.node.klass.name, child_queries
+                )
             else:  # Flatten the list
                 for key, value in child_dict.items():
                     return_dict[child.node.klass.name + "_" + key] = value
-                    self.__map_child_dict_queries(
-                        child_dict, child.node.klass.name + "_" + key
+                    self.__map_child_queries(
+                        node.klass, child.node.klass.name + "_" + key, child_queries
                     )
 
         for norm_child in node.normalized_children:
@@ -87,12 +94,12 @@ class Converter:
                 return_dict[f"{norm_child.node.klass.name}_{pk}"] = [
                     norm_child.node.klass.attributes[pk]
                 ]
-                self.__map_queries(norm_child.node.klass, pk, pk_key)
+                self.__map_queries(node.klass, pk, pk_key)
             else:
                 return_dict[f"{norm_child.node.klass.name}_{pk}"] = (
                     norm_child.node.klass.attributes[pk]
                 )
-                self.__map_queries(norm_child.node.klass, pk, pk_key)
+                self.__map_queries(node.klass, pk, pk_key)
 
         return return_dict
 
@@ -101,12 +108,16 @@ class Converter:
         for query, class_map in self.query_map.items():
             if klass in class_map and attribute in class_map[klass]:
                 queries.add(query)
-        if defined_key:
-            self.key_query_map[defined_key].update(queries)
-        self.key_query_map[attribute].update(queries)
 
-    def __map_child_dict_queries(self, child_dict: Dict, key_name: str):
+        attribute = defined_key if defined_key else attribute
+
+        self.key_query_map[klass][attribute].update(queries)
+
+    def __map_child_queries(self, klass: Class, key_name: str, queries: Set[str]):
+        self.key_query_map[klass][key_name].update(queries)
+
+    def __get_child_queries(self, child_dict: Dict, klass: Class) -> Set[str]:
         queries = set()
         for key in child_dict:
-            queries.update(self.key_query_map[key])
-        self.key_query_map[key_name].update(queries)
+            queries.update(self.key_query_map[klass][key])
+        return queries

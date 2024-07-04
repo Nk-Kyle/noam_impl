@@ -42,22 +42,40 @@ class Converter:
 
         return collection
 
-    def etf_to_eao(self, collection: NoAMCollection) -> NoAMCollection:
+    def etf_to_eao(self, etf_collection: NoAMCollection) -> NoAMCollection:
         """
         Convert the ETF Collection to EAO Collection
         """
-        eao_collection = NoAMCollection(collection.name)
-        eao_collection.add_entry("e", collection.schema)
-        eao_collection.add_related_queries(collection.related_queries)
+        eao_collection = NoAMCollection(etf_collection.name)
+        eao_collection.add_entry("e", etf_collection.schema)
+        eao_collection.add_related_queries(etf_collection.related_queries)
 
         return eao_collection
 
-    def etf_to_partition(self, collection: NoAMCollection) -> Partitioner:
+    def etf_to_partition(self, etf_collection: NoAMCollection) -> Partitioner:
         """
         Convert the ETF Collection to Partitioner
         """
-        partitioner = Partitioner(collection, self.frequency_table)
-        return partitioner
+        partitioner = Partitioner(etf_collection, self.frequency_table)
+        partitions = partitioner.partition()
+
+        # Convert the partitions to a NoAMCollection
+        partition_collection = NoAMCollection(etf_collection.name)
+        partition_collection.add_related_queries(etf_collection.related_queries)
+        for idx, partition in enumerate(partitions):
+            # Add an entry for each partition
+            if len(partition) > 1:
+                # Create a dictionary for the partition
+                partition_dict = {}
+                for ek in partition:
+                    partition_dict[ek] = etf_collection.schema[ek]
+                partition_collection.add_entry(f"p{idx}", partition_dict)
+            else:
+                # Add the single attribute to the collection
+                partition_collection.add_entry(
+                    f"p{idx}:{partition[0]}", etf_collection.schema[partition[0]]
+                )
+        partition_collection.print_schema()
 
     def __aggregate_recursive(
         self, node: AggNode

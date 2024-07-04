@@ -46,9 +46,10 @@ class Partitioner:
         for partition in partitions:
             partition_keys.append([id_to_key[key] for key in partition])
         # Add the unused attributes to the partitions
-        partition_keys.append(list(unused_attributes))
+        if unused_attributes:
+            partition_keys.append(list(unused_attributes))
 
-        print(partition_keys)
+        return partition_keys
 
     def create_AUM(self) -> Dict[str, Dict[str, int]]:
         """

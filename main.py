@@ -12,5 +12,3 @@ for agg_tree in agg_trees:
     etf = converter.aggregate_to_etf(agg_tree)
     # etf.print_schema()
     partitioner = converter.etf_to_partition(etf)
-    # etf.print_schema()
-    partitioner.partition()

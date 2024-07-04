@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import List
 
 
 class PartitionNode:
@@ -18,17 +19,35 @@ class PartitionNode:
             print(f"Node {node.key + 1} (Affinity chain: {node.affinity_chain})")
             node = node.next_node
 
-    def print_partitions(self):
+    from collections import defaultdict
+
+    def get_partitions(self) -> List[List[int]]:
+        """
+        Get the partitions of the tree based on the affinity chain
+        """
         partitions = defaultdict(list)
         node = self
+        zero_partition_counter = 1
+        last_affinity_chain = None
+
         while node is not None:
-            if node.affinity_chain not in partitions:
-                partitions[node.affinity_chain] = []
-            partitions[node.affinity_chain].append(node.key)
+            if node.affinity_chain == 0:
+                # Use a unique key for each sequence of 0 values
+                partition_key = f"0_{zero_partition_counter}"
+            else:
+                partition_key = node.affinity_chain
+                # If transitioning from 0 to a non-zero value, increment the counter
+                if last_affinity_chain == 0:
+                    zero_partition_counter += 1
+
+            partitions[partition_key].append(node.key)
+            last_affinity_chain = node.affinity_chain
             node = node.next_node
 
         for key, val in partitions.items():
             print(f"Partition {key}: {val}")
+
+        return [val for val in partitions.values()]
 
 
 class PartitionEdge:

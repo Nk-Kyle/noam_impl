@@ -2,7 +2,8 @@ from model.noam.collection import NoAMCollection
 from model.frequency import FrequencyTable
 from collections import defaultdict
 from navathe.vp import partition as vertical_partition
-from typing import List
+from typing import List, Dict
+from copy import deepcopy
 
 
 class Partitioner:
@@ -14,30 +15,42 @@ class Partitioner:
 
     def partition(self):
         unused_attributes = self.get_unused_attributes()
+
+        # Copy the AAM
+        aam = deepcopy(self.aam)
         # Remove unused attributes from the AAM
         for unused_attribute in unused_attributes:
-            for ek in self.aam.keys():
-                del self.aam[ek][unused_attribute]
+            for ek in aam.keys():
+                del aam[ek][unused_attribute]
         for unused_attribute in unused_attributes:
-            del self.aam[unused_attribute]
+            del aam[unused_attribute]
 
         # Create a mapping of id: aam key
         id_to_key = {}
-        for idx, key in enumerate(self.aam.keys()):
+        for idx, key in enumerate(aam.keys()):
             id_to_key[idx] = key
 
         # Convert AAM to adjacency matrix
         adjacency_matrix = []
-        for ek1 in self.aam.keys():
+        for ek1 in aam.keys():
             row = []
-            for ek2 in self.aam.keys():
-                row.append(self.aam[ek1][ek2])
+            for ek2 in aam.keys():
+                row.append(aam[ek1][ek2])
             adjacency_matrix.append(row)
 
         # Perform vertical partitioning
-        vertical_partition(adjacency_matrix)
+        partitions = vertical_partition(adjacency_matrix)
 
-    def create_AUM(self):
+        # Convert the partitions keys to ek keys
+        partition_keys = []
+        for partition in partitions:
+            partition_keys.append([id_to_key[key] for key in partition])
+        # Add the unused attributes to the partitions
+        partition_keys.append(list(unused_attributes))
+
+        print(partition_keys)
+
+    def create_AUM(self) -> Dict[str, Dict[str, int]]:
         """
         Create AUM (Attribute Usage Matrix) from ETF model
 
@@ -53,7 +66,7 @@ class Partitioner:
                     aum[query][ek] = 0
         return aum
 
-    def create_AAM(self):
+    def create_AAM(self) -> Dict[str, Dict[str, float]]:
         """
         Create AM (Affinity Matrix) from AUM and Frequency Table
         Representational of graph AM

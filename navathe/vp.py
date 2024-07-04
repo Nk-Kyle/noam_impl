@@ -179,4 +179,4 @@ def partition(adjacency_matrix: List[List[int]]):
                                 node.affinity_chain = from_node.affinity_chain
                                 node = node.prev_node
 
-    tail_node.print_partitions()
+    return tail_node.get_partitions()

@@ -4,6 +4,7 @@ from collections import defaultdict
 from navathe.vp import partition as vertical_partition
 from typing import List, Dict
 from copy import deepcopy
+import pandas as pd
 
 
 class Partitioner:
@@ -14,6 +15,7 @@ class Partitioner:
         self.aam = self.create_AAM()
 
     def partition(self):
+        self.print_AUM()
         unused_attributes = self.get_unused_attributes()
 
         # Copy the AAM
@@ -90,33 +92,27 @@ class Partitioner:
 
     def print_AUM(self):
         """
-        Print AUM in tabular format
+        Print AUM using pandas DataFrame for better alignment and presentation
         """
-        print("AUM")
-        print("Queries", end="\t")
-        for ek in self.etf_model.schema.keys():
-            print(ek, end="\t")
-        print()
-        for query, ek_dict in self.aum.items():
-            print(query, end="\t")
-            for ek, value in ek_dict.items():
-                print(value, end="\t")
-            print()
+        # Convert AUM to DataFrame
+        aum_df = pd.DataFrame(self.aum).T  # Transpose to get queries as rows
+        # Print DataFrame
+        print(aum_df.to_string())
+        # Output to file txt
+        with open(f"aum_{self.etf_model.name}.txt", "w") as f:
+            f.write(aum_df.to_string())
 
     def print_AAM(self):
         """
-        Print AM in tabular format
+        Print AAM using pandas DataFrame for better alignment and presentation
         """
-        print("AM")
-        print("Ek", end="\t")
-        for ek in self.aam.keys():
-            print(ek, end="\t")
-        print()
-        for ek1, ek_dict in self.aam.items():
-            print(ek1, end="\t")
-            for ek2, value in ek_dict.items():
-                print(value, end="\t")
-            print()
+        # Convert AAM to DataFrame
+        aam_df = pd.DataFrame(self.aam)
+        # Print DataFrame
+        print(aam_df.to_string())
+        # Output to file txt
+        with open(f"aam_{self.etf_model.name}.txt", "w") as f:
+            f.write(aam_df.to_string())
 
     def get_unused_attributes(self):
         """

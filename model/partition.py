@@ -44,8 +44,8 @@ class PartitionNode:
             last_affinity_chain = node.affinity_chain
             node = node.next_node
 
-        for key, val in partitions.items():
-            print(f"Partition {key}: {val}")
+        # for key, val in partitions.items():
+        #     print(f"Partition {key}: {val}")
 
         return [val for val in partitions.values()]
 

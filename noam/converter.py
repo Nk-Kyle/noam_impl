@@ -4,7 +4,6 @@ from model.frequency import FrequencyTable
 from model.klass import Class
 from typing import Dict, List, Set
 from collections import defaultdict
-from pprint import pprint
 from noam.partitioner import Partitioner
 
 
@@ -75,7 +74,7 @@ class Converter:
                 partition_collection.add_entry(
                     f"p{idx}:{partition[0]}", etf_collection.schema[partition[0]]
                 )
-        partition_collection.print_schema()
+        return partition_collection
 
     def __aggregate_recursive(
         self, node: AggNode

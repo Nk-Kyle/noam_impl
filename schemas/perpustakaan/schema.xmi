@@ -115,6 +115,14 @@
 				type="string_id" visibility="public" xmi:id="5U.4JgmGAqAAdRHX"
 				xmi:type="uml:Property">
 			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="keywords" type="string_id"
+				visibility="private" xmi:id="z7HaDQmGAqAAdgfM" xmi:type="uml:Property">
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+				isLeaf="false" isReadOnly="false" isStatic="false" name="language" type="string_id"
+				visibility="private" xmi:id="twfaDQmGAqAAdgfk" xmi:type="uml:Property">
+			</ownedAttribute>
 		</ownedMember>
 		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Publisher"
 			visibility="public" xmi:id="CTckJgmGAqAAdRKp" xmi:type="uml:Class">
@@ -143,11 +151,12 @@
 				isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="string_id"
 				visibility="public" xmi:id="DLiUJgmGAqAAdRNr" xmi:type="uml:Property">
 			</ownedAttribute>
-			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false"
+			<!-- <ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false"
+			isID="false"
 				isLeaf="false" isReadOnly="false" isStatic="false" name="description"
 				type="string_id" visibility="public" xmi:id="DLiUJgmGAqAAdRNs"
 				xmi:type="uml:Property">
-			</ownedAttribute>
+			</ownedAttribute> -->
 		</ownedMember>
 		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Category"
 			visibility="public" xmi:id="po2yFgmGAqAAdgqH" xmi:type="uml:Class">

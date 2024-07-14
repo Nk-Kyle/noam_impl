@@ -34,6 +34,8 @@
             <attribute searchKey="true">id</attribute>
             <attribute>name</attribute>
             <attribute>description</attribute>
+            <attribute>language</attribute>
+            <attribute>keywords</attribute>
             <relation name="writes">
                 <class name="Author">
                     <attribute>id</attribute>
@@ -112,7 +114,6 @@
                 <class name="Book">
                     <attribute>id</attribute>
                     <attribute>name</attribute>
-                    <attribute>description</attribute>
                     <relation name="supplies">
                         <class name="Publisher">
                             <attribute>id</attribute>

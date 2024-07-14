@@ -11,4 +11,6 @@ converter = Converter(frequency_table)
 for agg_tree in agg_trees:
     etf = converter.aggregate_to_etf(agg_tree)
     # etf.print_schema()
-    partitioner = converter.etf_to_partition(etf)
+    partitioned = converter.etf_to_partition(etf)
+    partitioned.print_schema()
+    break

@@ -51,7 +51,7 @@ class Converter:
 
         return eao_collection
 
-    def etf_to_partition(self, etf_collection: NoAMCollection) -> Partitioner:
+    def etf_to_partition(self, etf_collection: NoAMCollection) -> NoAMCollection:
         """
         Convert the ETF Collection to Partitioner
         """

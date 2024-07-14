@@ -15,7 +15,7 @@ class Partitioner:
         self.aam = self.create_AAM()
 
     def partition(self):
-        self.print_AUM()
+        # self.print_AAM()
         unused_attributes = self.get_unused_attributes()
 
         # Copy the AAM

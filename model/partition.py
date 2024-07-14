@@ -13,11 +13,15 @@ class PartitionNode:
         self.affinity_chain = 0
 
     def print_tree(self):
+        print("Printing tree")
         node = self
         while node is not None:
-            print("V")
             print(f"Node {node.key + 1} (Affinity chain: {node.affinity_chain})")
+            if node.next_node is not None:
+                print(f"V ({node.next_link})")
             node = node.next_node
+        print("End of tree")
+        print()
 
     from collections import defaultdict
 

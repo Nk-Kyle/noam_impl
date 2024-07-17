@@ -61,6 +61,7 @@
         <class name="Member">
             <attribute searchKey="true">id</attribute>
             <attribute>name</attribute>
+            <attribute>type</attribute>
             <relation name="loaned">
                 <class name="Loan">
                     <attribute>id</attribute>

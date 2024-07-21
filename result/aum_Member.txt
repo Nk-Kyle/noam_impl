@@ -1,0 +1,3 @@
+    name  type  employeeId  studentId  year  id  Loan  Address_address  Address_postal  Address_city  Faculty_name  Faculty_id
+Q3     1     1           0          0     0   1     1                0               0             0             0           0
+Q4     1     1           1          1     1   1     0                1               1             1             1           1

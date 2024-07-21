@@ -1,0 +1,4 @@
+    name  language  description  keywords  id  Loan  Author  Category  Publisher_id
+Q5     1         0            0         0   1     0       1         1             1
+Q2     1         1            1         1   1     0       1         1             1
+Q1     0         0            0         0   1     1       0         0             1

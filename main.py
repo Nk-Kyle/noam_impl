@@ -13,4 +13,3 @@ for agg_tree in agg_trees:
     # etf.print_schema()
     partitioned = converter.etf_to_partition(etf)
     partitioned.print_schema()
-    break

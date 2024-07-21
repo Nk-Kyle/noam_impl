@@ -1,0 +1,25 @@
+{
+    "id": "integer",
+    "year": "integer",
+    "employeeId": "string",
+    "name": "string",
+    "type": "string",
+    "studentId": "string",
+    "Loan": [
+        {
+            "id": "integer",
+            "loanedAt": "datetime",
+            "Book_id": "integer",
+            "Book_name": "string",
+            "Book_description": "string",
+            "Return_returnedAt": "datetime",
+            "Return_id": "integer",
+            "Return_penalty": "integer"
+        }
+    ],
+    "Faculty_id": "integer",
+    "Faculty_name": "string",
+    "Address_postal": "string",
+    "Address_address": "string",
+    "Address_city": "string"
+}

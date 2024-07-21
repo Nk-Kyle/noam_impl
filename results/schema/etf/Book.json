@@ -1,0 +1,35 @@
+{
+    "id": "integer",
+    "language": "string",
+    "description": "string",
+    "keywords": "string",
+    "name": "string",
+    "Loan": [
+        {
+            "id": "integer",
+            "loanedAt": "datetime",
+            "Member_id": "integer",
+            "Member_year": "integer",
+            "Member_employeeId": "string",
+            "Member_name": "string",
+            "Member_type": "string",
+            "Member_studentId": "string",
+            "Return_returnedAt": "datetime",
+            "Return_id": "integer",
+            "Return_penalty": "integer"
+        }
+    ],
+    "Author": [
+        {
+            "id": "integer",
+            "name": "string"
+        }
+    ],
+    "Category": [
+        {
+            "name": "string",
+            "subcategory": "string"
+        }
+    ],
+    "Publisher_id": "integer"
+}

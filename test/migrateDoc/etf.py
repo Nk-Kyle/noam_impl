@@ -1,14 +1,6 @@
 # Migrate the tables from the test database to ETF Model
 
-from test.generator.models import (
-    engine,
-    metadata,
-    member_table,
-    loan_table,
-    return_table,
-    book_table,
-    author_table,
-)
+from test.generator.models import engine
 from sqlalchemy import text
 from test.mongodb.db import client as mongo_client
 
@@ -21,6 +13,7 @@ def run():
         book_collection = mongo_db["book"]
 
         # Inserting data into book collection
+        book_collection.drop()
         query = text(
             "SELECT book.id, book.name, book.language, book.description,\
             book.keywords, publisher.id as Publisher_id FROM book JOIN\
@@ -36,7 +29,7 @@ def run():
                     "description": row.description,
                     # Convert keywords to list of keywords and remove [], '', and spaces
                     "keywords": row.keywords.strip("[] ").replace("'", "").split(", "),
-                    "publisher_id": row.Publisher_id,
+                    "Publisher_id": row.Publisher_id,
                 }
             )
 
@@ -115,6 +108,7 @@ def run():
 
         # =========== Member Collection =================
         member_collection = mongo_db["member"]
+        member_collection.drop()
 
         # Inserting data into member collection
         query = text("SELECT * from member")
@@ -166,6 +160,7 @@ def run():
 
         # =========== Publisher Collection =================
         publisher_collection = mongo_db["publisher"]
+        publisher_collection.drop()
 
         # Inserting data into publisher collection
         query = text("SELECT * from publisher")
@@ -181,6 +176,7 @@ def run():
 
         # =========== Author Collection =================
         author_collection = mongo_db["author"]
+        author_collection.drop()
 
         # Inserting data into author collection
         query = text("SELECT * from author")

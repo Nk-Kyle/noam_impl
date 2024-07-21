@@ -142,6 +142,7 @@ def run():
         connection.commit()
 
         # Generate Book Loans
+        loan_cnt = 1
         for book_id in range(1, BOOK_COUNT + 1):
             loan_count = random.randint(0, BOOK_LOAN_AVG_COUNT * 2)
             loan_date_time = fake.date_time_between(start_date="-10y", end_date="now")
@@ -164,14 +165,16 @@ def run():
 
                 # Generate Return
                 stmt = insert(return_table).values(
-                    loan_id=book_id,
+                    loan_id=loan_cnt,
                     returnedAt=return_date_time,
                     penalty=penalty,
                 )
                 connection.execute(stmt)
+                loan_cnt += 1
 
             if book_id % 5_000 == 0:
                 connection.commit()
+        connection.commit()
 
     # Query the data
     from sqlalchemy import select, text

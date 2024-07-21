@@ -7,6 +7,7 @@ class NoAMCollection:
         self.schema = {}
         self.related_queries = set()
         self.ek_queries = {}
+        self.type = "etf"
 
     def __str__(self):
         return self.name or "NoAM Collection"
@@ -39,3 +40,23 @@ class NoAMCollection:
         print("Ek\tEv")
         for ek, ev in self.schema.items():
             print(f"{ek}\t{ev}")
+
+    def export_schema_as_json(self):
+        """
+        Prints schema as json
+        """
+        DIRECTORY = "results/schema"
+        import json
+        import os
+
+        if not os.path.exists(DIRECTORY):
+            os.makedirs(DIRECTORY)
+        if not os.path.exists(f"{DIRECTORY}/{self.type}"):
+            os.makedirs(f"{DIRECTORY}/{self.type}")
+
+        with open(f"{DIRECTORY}/{self.type}/{self.name}.json", "w") as f:
+            json.dump(
+                self.schema,
+                f,
+                indent=4,
+            )

@@ -48,7 +48,7 @@ class Converter:
         eao_collection = NoAMCollection(etf_collection.name)
         eao_collection.add_entry("e", etf_collection.schema)
         eao_collection.add_related_queries(etf_collection.related_queries)
-
+        eao_collection.type = "eao"
         return eao_collection
 
     def etf_to_partition(self, etf_collection: NoAMCollection) -> NoAMCollection:
@@ -74,6 +74,7 @@ class Converter:
                 partition_collection.add_entry(
                     f"p{idx}:{partition[0]}", etf_collection.schema[partition[0]]
                 )
+        partition_collection.type = "partition"
         return partition_collection
 
     def __aggregate_recursive(

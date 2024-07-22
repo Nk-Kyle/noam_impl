@@ -88,7 +88,7 @@ def run():
 
         # Add Category Data for each book as a list of subdocuments
         query = text(
-            "SELECT book_category.book_id, category.id, category.name FROM book_category \
+            "SELECT book_category.book_id, category.id, category.name, category.subcategory FROM book_category \
             JOIN category ON book_category.category_id = category.id"
         )
 
@@ -101,6 +101,7 @@ def run():
                         "Category": {
                             "id": row.id,
                             "name": row.name,
+                            "subcategory": row.subcategory,
                         }
                     }
                 },
@@ -118,6 +119,7 @@ def run():
                 {
                     "_id": row.id,
                     "name": row.name,
+                    "type": "Student" if row.studentId else "Teacher",
                     "studentId": row.studentId,
                     "year": row.year,
                     "employeeId": row.employeeId,

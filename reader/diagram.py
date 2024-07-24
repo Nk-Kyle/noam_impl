@@ -1,13 +1,13 @@
 import xml.etree.ElementTree as ET
 from os import path
-from enum import StrEnum
+from enum import Enum
 from model.diagram import ClassDiagram, Class, Relationship
 from utils.choices import Stereotype, RelType
 
 
 # File is located in the same directory in folder schemas
 class ClassDiagramReader:
-    class UMLType(StrEnum):
+    class UMLType(str, Enum):
         CLASS = "uml:Class"
         ASSOCIATION = "uml:Association"
         DATA_TYPE = "uml:DataType"

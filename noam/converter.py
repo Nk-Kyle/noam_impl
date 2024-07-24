@@ -2,7 +2,7 @@ from model.noam.collection import NoAMCollection
 from model.aggtree import AggTree, AggNode
 from model.frequency import FrequencyTable
 from model.klass import Class
-from typing import Dict, List, Set
+from typing import Dict, List, Set, Union
 from collections import defaultdict
 from noam.partitioner import Partitioner
 
@@ -79,7 +79,7 @@ class Converter:
 
     def __aggregate_recursive(
         self, node: AggNode
-    ) -> Dict[str, str | List[Dict[str, str]]]:
+    ) -> Dict[str, Union[str, List[Dict[str, str]]]]:
         """
         Recursively add the attributes to the collection
         """

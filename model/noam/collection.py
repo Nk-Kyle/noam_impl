@@ -1,4 +1,4 @@
-from typing import Any, Set
+from typing import Any, Set, Union
 
 
 class NoAMCollection:
@@ -20,7 +20,7 @@ class NoAMCollection:
         if queries:
             self.ek_queries[ek] = queries
 
-    def add_related_queries(self, query: str | Set[str]):
+    def add_related_queries(self, query: Union[str, Set[str]]):
         """
         Add related queries to the collection
         """

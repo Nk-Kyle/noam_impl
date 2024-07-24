@@ -1,5 +1,5 @@
 from utils.choices import Stereotype
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Union
 
 
 class Class:
@@ -13,7 +13,7 @@ class Class:
     def __str__(self):
         return f"[Class] [{self.stereotype}] {self.name}"
 
-    def add_attribute(self, attribute: Tuple[str, str] | Dict[str, str]):
+    def add_attribute(self, attribute: Union[Tuple[str, str], Dict[str, str]]):
         if isinstance(attribute, tuple):
             self.attributes[attribute[0]] = attribute[1]
         else:

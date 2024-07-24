@@ -1,7 +1,7 @@
-from enum import Enum, StrEnum
+from enum import Enum
 
 
-class Stereotype(Enum):
+class Stereotype(str, Enum):
     ENTITY = "Entity"
     VALUE_OBJECT = "Value Object"
     PK = "PK"

@@ -13,4 +13,5 @@ for agg_tree in agg_trees:
     eao = converter.etf_to_eao(etf)
     etf.export_schema_as_json()
     partitioned = converter.etf_to_partition(etf)
+    partitioned.export_schema_as_json()
     # partitioned.print_schema()

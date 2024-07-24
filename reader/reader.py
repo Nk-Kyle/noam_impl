@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 from os import path
-from enum import StrEnum
+from enum import Enum
 from model.diagram import ClassDiagram, Class, Relationship
 from model.query import QueryDocument
 from model.frequency import FrequencyTable
@@ -13,7 +13,7 @@ from typing import Tuple
 
 # File is located in the same directory in folder schemas
 class Reader:
-    class UMLType(StrEnum):
+    class UMLType(str, Enum):
         CLASS = "uml:Class"
         ASSOCIATION = "uml:Association"
 

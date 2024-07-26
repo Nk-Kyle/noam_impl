@@ -190,3 +190,19 @@ def run():
                     "name": row.name,
                 }
             )
+
+        # Add Book Data for each author as a list of subdocuments
+        query = text(
+            "SELECT book_author.author_id, book_author.book_id FROM book_author"
+        )
+
+        for row in conn.execute(query):
+            # Add book data to author collection
+            author_collection.update_one(
+                {"_id": row.author_id},
+                {
+                    "$push": {
+                        "Book_id": row.book_id,
+                    }
+                },
+            )

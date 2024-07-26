@@ -4,7 +4,7 @@ from riak import RiakObject
 
 
 def run():
-    mongo_db = mongo_client["etf"]
+    mongo_db = mongo_client["aggregate"]
     riak_db_aggregate = riak_client.bucket_type("aggregate")
 
     # =========== Book Collection =================
@@ -25,9 +25,6 @@ def run():
             obj = RiakObject(riak_client, book_bucket_aggregate, f"{book_id}_{k}")
             obj.data = v
             obj.store()
-
-            # Get the book
-            book_obj = book_bucket_aggregate.get(f"{book_id}_{k}")
 
     # =========== Member Collection =================
     member_collection = mongo_db["member"]

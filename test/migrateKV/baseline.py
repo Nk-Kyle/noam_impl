@@ -131,30 +131,25 @@ def run():
         for row in conn.execute(query):
 
             # Get book_id
-            book_author = book_author_bucket.get(f"book_{row.book_id}_author").data
+            book_author = book_author_bucket.get(f"book_{row.book_id}_author")
 
-            if book_author is None:
-                obj = RiakObject(
-                    riak_client, book_author_bucket, f"book_{row.book_id}_author"
-                )
-                obj.data = [row.author_id]
+            if book_author.data is None:
+                book_author.data = [row.author_id]
             else:
                 # Append author_id to the existing list and update the object
-                book_author.append(row.author_id)
-                book_author.store()
+                book_author.data.append(row.author_id)
+            book_author.store()
+            book_author = book_author_bucket.get(f"book_{row.book_id}_author")
 
             # Get author_id
-            author_book = book_author_bucket.get(f"author_{row.author_id}_book").data
+            author_book = book_author_bucket.get(f"author_{row.author_id}_book")
 
-            if author_book is None:
-                obj = RiakObject(
-                    riak_client, book_author_bucket, f"author_{row.author_id}_book"
-                )
-                obj.data = [row.book_id]
+            if author_book.data is None:
+                author_book.data = [row.book_id]
             else:
                 # Append book_id to the existing list and update the object
-                author_book.append(row.book_id)
-                author_book.store()
+                author_book.data.append(row.book_id)
+            author_book.store()
 
         # =========== Category Table =================
         category_bucket = riak_db_baseline.bucket("category")
@@ -190,36 +185,24 @@ def run():
         for row in conn.execute(query):
 
             # Get book_id
-            book_category = book_category_bucket.get(
-                f"book_{row.book_id}_category"
-            ).data
+            book_category = book_category_bucket.get(f"book_{row.book_id}_category")
 
-            if book_category is None:
-                obj = RiakObject(
-                    riak_client, book_category_bucket, f"book_{row.book_id}_category"
-                )
-                obj.data = [row.category_id]
+            if book_category.data is None:
+                book_category.data = [row.category_id]
             else:
                 # Append category_id to the existing list and update the object
-                book_category.append(row.category_id)
-                book_category.store()
+                book_category.data.append(row.category_id)
+            book_category.store()
 
             # Get category_id
-            category_book = book_category_bucket.get(
-                f"category_{row.category_id}_book"
-            ).data
+            category_book = book_category_bucket.get(f"category_{row.category_id}_book")
 
-            if category_book is None:
-                obj = RiakObject(
-                    riak_client,
-                    book_category_bucket,
-                    f"category_{row.category_id}_book",
-                )
-                obj.data = [row.book_id]
+            if category_book.data is None:
+                category_book.data = [row.book_id]
             else:
                 # Append book_id to the existing list and update the object
-                category_book.append(row.book_id)
-                category_book.store()
+                category_book.data.append(row.book_id)
+            category_book.store()
 
         # =========== Publisher Table =================
         publisher_bucket = riak_db_baseline.bucket("publisher")

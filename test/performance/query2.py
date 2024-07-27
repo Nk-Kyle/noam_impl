@@ -12,11 +12,7 @@ def run(n_run: int = 10):
     # Search Book detail by book_id
 
     # Generate n_run random book_id
-    book_ids = set()
-    while len(book_ids) < n_run:
-        book_id = random.randint(1, BOOK_COUNT)
-        if book_id not in book_ids:
-            book_ids.add(book_id)
+    book_ids = random.sample(range(1, BOOK_COUNT), n_run)
 
     # MongoDB
     # ETF & EAO Model

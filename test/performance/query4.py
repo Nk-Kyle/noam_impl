@@ -12,11 +12,7 @@ def run(n_run: int = 10):
     # Search Member Information by member_id
 
     # Generate n_run random member_id
-    member_ids = set()
-    while len(member_ids) < n_run:
-        member_id = random.randint(1, MEMBER_COUNT)
-        if member_id not in member_ids:
-            member_ids.add(member_id)
+    member_ids = random.sample(range(1, MEMBER_COUNT), n_run)
 
     # MongoDB
     # ETF & EAO Model

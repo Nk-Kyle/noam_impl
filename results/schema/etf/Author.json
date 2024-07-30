@@ -1,6 +1,6 @@
 {
-    "id": "integer",
     "name": "string",
+    "id": "integer",
     "Book_id": [
         "integer"
     ]

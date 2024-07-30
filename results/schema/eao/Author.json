@@ -1,0 +1,9 @@
+{
+    "e": {
+        "name": "string",
+        "id": "integer",
+        "Book_id": [
+            "integer"
+        ]
+    }
+}

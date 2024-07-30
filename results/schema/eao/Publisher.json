@@ -1,0 +1,7 @@
+{
+    "e": {
+        "contact": "string",
+        "name": "string",
+        "id": "integer"
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "p0:Loan": [
+        {
+            "id": "integer",
+            "loanedAt": "datetime",
+            "Member_name": "string",
+            "Member_studentId": "string",
+            "Member_id": "integer",
+            "Member_year": "integer",
+            "Member_type": "string",
+            "Member_employeeId": "string",
+            "Return_penalty": "integer",
+            "Return_id": "integer",
+            "Return_returnedAt": "datetime"
+        }
+    ],
+    "p1": {
+        "description": "string",
+        "language": "string",
+        "keywords": "string"
+    },
+    "p2": {
+        "Category": [
+            {
+                "subcategory": "string",
+                "name": "string"
+            }
+        ],
+        "Author": [
+            {
+                "name": "string",
+                "id": "integer"
+            }
+        ],
+        "Publisher_id": "integer",
+        "id": "integer",
+        "name": "string"
+    }
+}

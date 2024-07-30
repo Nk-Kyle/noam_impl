@@ -1,5 +1,5 @@
 {
-    "id": "integer",
+    "contact": "string",
     "name": "string",
-    "contact": "string"
+    "id": "integer"
 }

@@ -1,0 +1,9 @@
+{
+    "p0": {
+        "Book_id": [
+            "integer"
+        ],
+        "id": "integer",
+        "name": "string"
+    }
+}

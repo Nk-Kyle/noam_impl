@@ -1,34 +1,34 @@
 {
-    "id": "integer",
-    "language": "string",
-    "description": "string",
-    "keywords": "string",
     "name": "string",
+    "keywords": "string",
+    "language": "string",
+    "id": "integer",
+    "description": "string",
     "Loan": [
         {
             "id": "integer",
             "loanedAt": "datetime",
+            "Member_name": "string",
+            "Member_studentId": "string",
             "Member_id": "integer",
             "Member_year": "integer",
-            "Member_employeeId": "string",
-            "Member_name": "string",
             "Member_type": "string",
-            "Member_studentId": "string",
-            "Return_returnedAt": "datetime",
+            "Member_employeeId": "string",
+            "Return_penalty": "integer",
             "Return_id": "integer",
-            "Return_penalty": "integer"
+            "Return_returnedAt": "datetime"
         }
     ],
     "Author": [
         {
-            "id": "integer",
-            "name": "string"
+            "name": "string",
+            "id": "integer"
         }
     ],
     "Category": [
         {
-            "name": "string",
-            "subcategory": "string"
+            "subcategory": "string",
+            "name": "string"
         }
     ],
     "Publisher_id": "integer"

@@ -15,7 +15,8 @@ class Partitioner:
         self.aam = self.create_AAM()
 
     def partition(self):
-        # self.print_AAM()
+        self.print_AUM()
+        self.print_AAM()
         unused_attributes = self.get_unused_attributes()
 
         # Copy the AAM
@@ -94,25 +95,27 @@ class Partitioner:
         """
         Print AUM using pandas DataFrame for better alignment and presentation
         """
-        # Convert AUM to DataFrame
-        aum_df = pd.DataFrame(self.aum).T  # Transpose to get queries as rows
-        # Print DataFrame
-        print(aum_df.to_string())
-        # Output to file txt
-        with open(f"aum_{self.etf_model.name}.txt", "w") as f:
-            f.write(aum_df.to_string())
+        DIRECTORY = "results/matrix"
+        import os
+
+        if not os.path.exists(DIRECTORY):
+            os.makedirs(DIRECTORY)
+
+        with open(f"{DIRECTORY}/aum_{self.etf_model.name}.txt", "w") as f:
+            f.write(pd.DataFrame(self.aum).to_string())
 
     def print_AAM(self):
         """
         Print AAM using pandas DataFrame for better alignment and presentation
         """
-        # Convert AAM to DataFrame
-        aam_df = pd.DataFrame(self.aam)
-        # Print DataFrame
-        print(aam_df.to_string())
-        # Output to file txt
-        with open(f"aam_{self.etf_model.name}.txt", "w") as f:
-            f.write(aam_df.to_string())
+        DIRECTORY = "results/matrix"
+        import os
+
+        if not os.path.exists(DIRECTORY):
+            os.makedirs(DIRECTORY)
+
+        with open(f"{DIRECTORY}/aam_{self.etf_model.name}.txt", "w") as f:
+            f.write(pd.DataFrame(self.aam).to_string())
 
     def get_unused_attributes(self):
         """

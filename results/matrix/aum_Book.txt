@@ -1,4 +1,10 @@
-    name  language  description  keywords  id  Loan  Author  Category  Publisher_id
-Q5     1         0            0         0   1     0       1         1             1
-Q2     1         1            1         1   1     0       1         1             1
-Q1     0         0            0         0   1     1       0         0             1
+              Q1  Q2  Q5
+name           0   1   1
+keywords       0   1   0
+language       0   1   0
+id             1   1   1
+description    0   1   0
+Loan           1   0   0
+Author         0   1   1
+Category       0   1   1
+Publisher_id   1   1   1

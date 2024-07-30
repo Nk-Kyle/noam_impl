@@ -1,3 +1,3 @@
-from test.performance.query5 import run
+from test.performance.updatePublisher import run
 
 run(100)

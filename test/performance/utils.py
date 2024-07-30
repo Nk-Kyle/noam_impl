@@ -19,3 +19,7 @@ def cold_start(mongo_client, riak_client):
     riak_db_etf_book = riak_client.bucket_type("etf").bucket("book")
     book = riak_db_etf_book.get("1_name")
     _ = book.data
+
+
+def string_to_list(data):
+    return data.strip("[] ").replace("'", "").split(", ")

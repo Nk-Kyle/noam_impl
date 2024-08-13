@@ -1,9 +1,9 @@
               Q1  Q2  Q5
+description    0   1   0
 name           0   1   1
-keywords       0   1   0
 language       0   1   0
 id             1   1   1
-description    0   1   0
+keywords       0   1   0
 Loan           1   0   0
 Author         0   1   1
 Category       0   1   1

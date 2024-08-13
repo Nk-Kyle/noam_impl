@@ -1,5 +1,5 @@
-from model.aggtree import AggNode
-from model.frequency import FrequencyTable
+from noam_impl.model.aggtree import AggNode
+from noam_impl.model.frequency import FrequencyTable
 
 
 class CostUtil:

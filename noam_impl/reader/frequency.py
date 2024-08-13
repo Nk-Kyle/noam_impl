@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from os import path
-from model.frequency import FrequencyTable
-from model.diagram import ClassDiagram
+from noam_impl.model.frequency import FrequencyTable
+from noam_impl.model.diagram import ClassDiagram
 from typing import List
 
 

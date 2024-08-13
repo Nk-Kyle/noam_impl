@@ -1,5 +1,5 @@
 from typing import List
-from model.partition import PartitionNode, PartitionEdge
+from noam_impl.model.partition import PartitionNode, PartitionEdge
 
 
 def partition(adjacency_matrix: List[List[int]]):

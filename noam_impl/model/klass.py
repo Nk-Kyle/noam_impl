@@ -1,4 +1,4 @@
-from utils.choices import Stereotype
+from noam_impl.utils.choices import Stereotype
 from typing import Dict, Tuple, Union
 
 

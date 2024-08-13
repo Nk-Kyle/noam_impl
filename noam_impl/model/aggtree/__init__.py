@@ -1,6 +1,6 @@
-from model.klass import Class
-from model.query import Query
-from model.relationship import Relationship
+from noam_impl.model.klass import Class
+from noam_impl.model.query import Query
+from noam_impl.model.relationship import Relationship
 from .component import AggNode, RelAggNodeTuple
 from typing import List, Dict, Set
 from collections import defaultdict

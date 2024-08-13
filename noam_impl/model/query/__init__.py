@@ -1,5 +1,4 @@
-from model.klass import Class
-from model.relationship import Relationship
+from noam_impl.model.klass import Class
 from .component import QueryNode, RelNodeTuple
 from typing import List, Set
 

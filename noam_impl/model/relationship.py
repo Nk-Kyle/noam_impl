@@ -1,4 +1,4 @@
-from utils.choices import RelType
+from noam_impl.utils.choices import RelType
 from .klass import Class
 
 

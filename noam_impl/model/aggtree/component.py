@@ -1,12 +1,12 @@
 from typing import List
-from model.klass import Class
+from noam_impl.model.klass import Class
 
 
 class AggNode:
     def __init__(
         self, klass: Class, main_root, parent: "AggNode" = None, is_root=False
     ):
-        from model.aggtree import AggTree
+        from noam_impl.model.aggtree import AggTree
 
         self.klass = klass
         self.parent: AggNode = parent
@@ -65,7 +65,7 @@ class AggNode:
 
 
 class RelAggNodeTuple:
-    from model.relationship import Relationship
+    from noam_impl.model.relationship import Relationship
 
     def __init__(self, rel: Relationship, node: AggNode):
         self.rel = rel

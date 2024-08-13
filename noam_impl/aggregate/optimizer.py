@@ -1,9 +1,8 @@
-from typing import List, Tuple
-from model.frequency import FrequencyTable
-from model.aggtree import AggTree, AggNode
-from aggregate.cost import CostUtil
-from model.klass import Class
-from typing import Dict
+from typing import List, Tuple, Dict
+from noam_impl.model.frequency import FrequencyTable
+from noam_impl.model.aggtree import AggTree, AggNode
+from noam_impl.model.klass import Class
+from noam_impl.aggregate.cost import CostUtil
 
 
 class Optimizer:

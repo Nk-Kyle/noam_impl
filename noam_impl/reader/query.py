@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from os import path
-from model.query import Query, QueryNode, RelNodeTuple, QueryDocument
-from model.diagram import ClassDiagram
+from noam_impl.model.query import Query, QueryNode, RelNodeTuple, QueryDocument
+from noam_impl.model.diagram import ClassDiagram
 
 
 # File is located in the same directory in folder schemas

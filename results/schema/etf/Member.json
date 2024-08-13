@@ -1,25 +1,25 @@
 {
-    "name": "string",
-    "studentId": "string",
-    "id": "integer",
     "year": "integer",
-    "type": "string",
+    "name": "string",
     "employeeId": "string",
+    "type": "string",
+    "id": "integer",
+    "studentId": "string",
     "Loan": [
         {
             "id": "integer",
             "loanedAt": "datetime",
-            "Book_name": "string",
             "Book_description": "string",
             "Book_id": "integer",
+            "Book_name": "string",
+            "Return_returnedAt": "datetime",
             "Return_penalty": "integer",
-            "Return_id": "integer",
-            "Return_returnedAt": "datetime"
+            "Return_id": "integer"
         }
     ],
-    "Address_address": "string",
     "Address_city": "string",
     "Address_postal": "string",
-    "Faculty_name": "string",
-    "Faculty_id": "integer"
+    "Address_address": "string",
+    "Faculty_id": "integer",
+    "Faculty_name": "string"
 }

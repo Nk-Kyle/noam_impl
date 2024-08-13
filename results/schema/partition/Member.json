@@ -1,29 +1,27 @@
 {
-    "p0": {
-        "Faculty_id": "integer",
-        "Faculty_name": "string",
-        "Address_postal": "string",
-        "Address_city": "string",
-        "Address_address": "string",
-        "employeeId": "string",
-        "year": "integer",
-        "studentId": "string"
-    },
-    "p1": {
-        "type": "string",
-        "id": "integer",
-        "name": "string"
-    },
-    "p2:Loan": [
+    "p0:Loan": [
         {
             "id": "integer",
             "loanedAt": "datetime",
-            "Book_name": "string",
             "Book_description": "string",
             "Book_id": "integer",
+            "Book_name": "string",
+            "Return_returnedAt": "datetime",
             "Return_penalty": "integer",
-            "Return_id": "integer",
-            "Return_returnedAt": "datetime"
+            "Return_id": "integer"
         }
-    ]
+    ],
+    "p1": {
+        "Faculty_name": "string",
+        "Faculty_id": "integer",
+        "Address_address": "string",
+        "Address_postal": "string",
+        "Address_city": "string",
+        "studentId": "string",
+        "employeeId": "string",
+        "id": "integer",
+        "type": "string",
+        "name": "string",
+        "year": "integer"
+    }
 }

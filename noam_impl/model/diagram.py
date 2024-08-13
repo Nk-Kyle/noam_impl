@@ -1,6 +1,6 @@
 from typing import Dict
-from model.klass import Class
-from model.relationship import Relationship
+from noam_impl.model.klass import Class
+from noam_impl.model.relationship import Relationship
 
 
 class ClassDiagram:

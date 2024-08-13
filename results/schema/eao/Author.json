@@ -1,7 +1,7 @@
 {
     "e": {
-        "name": "string",
         "id": "integer",
+        "name": "string",
         "Book_id": [
             "integer"
         ]

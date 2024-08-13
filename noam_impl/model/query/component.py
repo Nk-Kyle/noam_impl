@@ -2,7 +2,7 @@ from typing import List
 
 
 class QueryNode:
-    from model.klass import Class
+    from noam_impl.model.klass import Class
 
     def __init__(
         self, klass: Class, parent: "QueryNode" = None, attributes: List[str] = None
@@ -29,7 +29,7 @@ class QueryNode:
 
 
 class RelNodeTuple:
-    from model.relationship import Relationship
+    from noam_impl.model.relationship import Relationship
 
     def __init__(self, rel: Relationship, node: QueryNode):
         self.rel = rel

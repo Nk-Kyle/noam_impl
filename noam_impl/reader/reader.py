@@ -1,10 +1,10 @@
 import xml.etree.ElementTree as ET
 from os import path
 from enum import Enum
-from model.diagram import ClassDiagram, Class, Relationship
-from model.query import QueryDocument
-from model.frequency import FrequencyTable
-from utils.choices import Stereotype, RelType
+from noam_impl.model.diagram import ClassDiagram, Class, Relationship
+from noam_impl.model.query import QueryDocument
+from noam_impl.model.frequency import FrequencyTable
+from noam_impl.utils.choices import Stereotype, RelType
 from .diagram import ClassDiagramReader
 from .query import QueryReader
 from .frequency import FrequencyReader

@@ -1,10 +1,10 @@
-from model.noam.collection import NoAMCollection
-from model.aggtree import AggTree, AggNode
-from model.frequency import FrequencyTable
-from model.klass import Class
+from noam_impl.model.noam.collection import NoAMCollection
+from noam_impl.model.aggtree import AggTree, AggNode
+from noam_impl.model.frequency import FrequencyTable
+from noam_impl.model.klass import Class
+from noam_impl.noam.partitioner import Partitioner
 from typing import Dict, List, Set, Union
 from collections import defaultdict
-from noam.partitioner import Partitioner
 
 
 class Converter:

@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 from os import path
 from enum import Enum
-from model.diagram import ClassDiagram, Class, Relationship
-from utils.choices import Stereotype, RelType
+from noam_impl.model.diagram import ClassDiagram, Class, Relationship
+from noam_impl.utils.choices import Stereotype, RelType
 
 
 # File is located in the same directory in folder schemas

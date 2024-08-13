@@ -1,8 +1,8 @@
-from model.noam.collection import NoAMCollection
-from model.frequency import FrequencyTable
+from noam_impl.model.noam.collection import NoAMCollection
+from noam_impl.model.frequency import FrequencyTable
+from noam_impl.navathe.vp import partition as vertical_partition
 from collections import defaultdict
-from navathe.vp import partition as vertical_partition
-from typing import List, Dict
+from typing import Dict
 from copy import deepcopy
 import pandas as pd
 

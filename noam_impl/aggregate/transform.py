@@ -1,5 +1,5 @@
-from model.query import Query, QueryNode, RelNodeTuple
-from model.aggtree import AggTree, AggNode, RelAggNodeTuple
+from noam_impl.model.query import Query, QueryNode, RelNodeTuple
+from noam_impl.model.aggtree import AggTree, AggNode, RelAggNodeTuple
 
 
 class Transformer:

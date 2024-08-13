@@ -3,7 +3,7 @@
         "Book_id": [
             "integer"
         ],
-        "id": "integer",
-        "name": "string"
+        "name": "string",
+        "id": "integer"
     }
 }

@@ -1,14 +1,14 @@
-from model.diagram import ClassDiagram, Class
-from model.query import QueryDocument
-from model.frequency import FrequencyTable
-from typing import List, Dict, Set, Tuple
-from utils.choices import RelType, Stereotype
+from noam_impl.model.diagram import ClassDiagram, Class
+from noam_impl.model.query import QueryDocument
+from noam_impl.model.frequency import FrequencyTable
+from noam_impl.model.aggtree import AggTree, AggNode, RelAggNodeTuple
+from noam_impl.model.relationship import Relationship
+from noam_impl.aggregate.utils import Utils
+from noam_impl.aggregate.transform import Transformer
+from noam_impl.aggregate.optimizer import Optimizer
+from noam_impl.utils.choices import RelType, Stereotype
+from typing import List, Dict, Set
 from collections import defaultdict
-from model.aggtree import AggTree, AggNode, RelAggNodeTuple
-from model.relationship import Relationship
-from aggregate.utils import Utils
-from aggregate.transform import Transformer
-from aggregate.optimizer import Optimizer
 
 
 class Aggregator:

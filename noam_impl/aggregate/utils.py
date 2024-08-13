@@ -1,4 +1,4 @@
-from model.klass import Class
+from noam_impl.model.klass import Class
 from typing import Dict, Set, Tuple
 
 

@@ -2,7 +2,7 @@ from noam_impl.reader import Reader
 from noam_impl.aggregate.aggregate import Aggregator
 from noam_impl.noam.converter import Converter
 
-reader = Reader("noam_impl/schemas/perpustakaan")
+reader = Reader("schemas/perpustakaan")
 class_diagram, query_doc, frequency_table = reader.read()
 agg = Aggregator(class_diagram, query_doc, frequency_table)
 agg_trees = agg.create_optimized_trees()

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryDoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../xsd/query.xsd">
+    <query name="Q1">
+        <class name="A">
+            <attribute searchKey="true">id</attribute>
+            <relation name="r_a_b">
+                <class name="B">
+                    <attribute>id</attribute>
+                    <attribute>attrB1</attribute>
+                    <attribute>attrB2</attribute>
+                </class>
+            </relation>
+        </class>
+    </query>
+</queryDoc>

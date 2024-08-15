@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frequencyDoc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../xsd/frequency.xsd">
+    <frequency type="class" name="A">0</frequency>
+    <frequency type="class" name="B">1</frequency>
+    <frequency type="relation" name="r_a_b">1</frequency>
+    <frequency type="query" name="Q1">10</frequency>
+</frequencyDoc>
